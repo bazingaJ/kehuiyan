@@ -1,0 +1,74 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - FLAnimatedImage (1.0.12)
+  - IQKeyboardManager (5.0.7)
+  - JCore (1.1.7)
+  - JPush (3.0.8):
+    - JCore (~> 1.1.7)
+  - KLCPopup (1.0)
+  - MBProgressHUD (1.0.0)
+  - MJExtension (3.0.13)
+  - MJRefresh (3.1.15.3)
+  - RegexKitLite (4.0)
+  - SDCycleScrollView (1.65):
+    - SDWebImage (~> 3.7)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
+  - SWTableViewCell (0.3.7)
+  - XHLaunchAd (3.9.6):
+    - FLAnimatedImage (~> 1.0.12)
+  - XHToast (1.3.0)
+  - zhPopupController (1.0.2)
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.1.0)
+  - IQKeyboardManager
+  - JPush (~> 3.0.8)
+  - KLCPopup (~> 1.0)
+  - MBProgressHUD (~> 1.0.0)
+  - MJExtension (~> 3.0.13)
+  - MJRefresh (~> 3.1.12)
+  - RegexKitLite (~> 4.0)
+  - SDCycleScrollView (~> 1.65)
+  - SDWebImage (~> 3.8.1)
+  - SWTableViewCell (~> 0.3.7)
+  - XHLaunchAd
+  - XHToast (~> 1.3.0)
+  - zhPopupController (~> 1.0.2)
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  IQKeyboardManager: 0bfa4607d39924116b5c0c8b55b5d789288b5cba
+  JCore: f7459c81c135281a874a6beafdd321666adcc834
+  JPush: 9574d072cc37e93fa293ba69b43ce763c440943a
+  KLCPopup: 76c5a19227977f1e53d85236f9ef42257c168d98
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  MJExtension: 5932755f451458eefa24239358817f8d291240c7
+  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
+  RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
+  SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
+  XHLaunchAd: 39dc88fc469c47df457ec5dfa087c684d248957c
+  XHToast: 0918bc1a000b45132d0e94cd627507a5aae1d17d
+  zhPopupController: 411af38e63764130e4ae4ba5cde12c776dc84824
+
+PODFILE CHECKSUM: b87d74c4ed9680618a115859a92f85c94625b253
+
+COCOAPODS: 1.4.0

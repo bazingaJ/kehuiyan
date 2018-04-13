@@ -73,9 +73,9 @@
         
         //设置数据源
         [self.titleArr addObject:@[@"home_left_task",@"任务管理",@"0"]];
-        //[self.titleArr addObject:@[@"home_left_sell",@"销售管理",@"1"]];
-        //[self.titleArr addObject:@[@"home_left_huiyi",@"学术会议管理",@"2"]];
-        //[self.titleArr addObject:@[@"home_left_huanjiao",@"患教管理",@"3"]];
+        [self.titleArr addObject:@[@"home_left_sell",@"销售管理",@"1"]];
+        [self.titleArr addObject:@[@"home_left_huanjiao",@"患教管理",@"2"]];
+        [self.titleArr addObject:@[@"left_icon_patient",@"患者管理",@"3"]];
         [self.titleArr addObject:@[@"home_left_customer",@"客户管理",@"4"]];
         [self.titleArr addObject:@[@"home_left_tongji",@"统计数据",@"5"]];
         [self.titleArr addObject:@[@"home_left_info",@"个人资料管理",@"6"]];

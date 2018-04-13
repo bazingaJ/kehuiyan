@@ -14,4 +14,6 @@ target 'kehuiyan' do
     pod 'zhPopupController', '~> 1.0.2'
     pod 'SWTableViewCell', '~> 0.3.7'
     pod 'IQKeyboardManager'
+    pod 'WMPageController'
+    pod 'Masonry'
 end

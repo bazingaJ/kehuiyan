@@ -22,6 +22,11 @@
 #import "KHYTaskAddViewController.h"
 #import "KHYCustomerEditViewController.h"
 #import "KHYOrganizationViewController.h"
+#import "KHYQuestionListViewController.h"
+#import "KHYActivityViewController.h"
+#import "KHYPatientManageViewController.h"
+#import "KHYActivityViewController.h"
+#import "KHYOrderViewController.h"
 
 @interface KHYHomeViewController ()<KHYHomeMenuViewDelegate> {
     NSMutableDictionary *titleDic;
@@ -49,7 +54,7 @@
  */
 - (KHYHomeMenuView *)menuView {
     if(!_menuView) {
-        _menuView = [[KHYHomeMenuView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 180-90)];
+        _menuView = [[KHYHomeMenuView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 180)];
         [_menuView setDelegate:self];
     }
     return _menuView;
@@ -60,7 +65,6 @@
     [self setLeftButtonItemImageName:@"home_icon_leftMenu"];
     [self setRightButtonItemImageName:@"home_icon_email"];
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     self.title = @"玉鹤鸣";
     
@@ -69,17 +73,17 @@
     
     //设置标题
     [self.dataArr removeAllObjects];
-//    [self.dataArr addObject:@[@"home_icon_matter",@"待办事项"]];
+    [self.dataArr addObject:@[@"home_icon_matter",@"待办事项"]];
     [self.dataArr addObject:@[@"home_icon_tongji",@"当日统计"]];
     
     //设置数据源
     titleDic = [NSMutableDictionary dictionary];
     //代办事项
-//    [titleDic setValue:@[@"审批代办",@"任务代办"] forKey:@"1"];
+    [titleDic setValue:@[@"任务代办",@"咨询回复"] forKey:@"1"];
     //当日统计
-//    [titleDic setValue:@[@"拜访客户数",@"新增用户数",@"销量"] forKey:@"2"];
-    [titleDic setValue:@[@"拜访客户数",@"新增用户数"] forKey:@"1"];
-    [titleDic setObject:@[@"0",@"0"] forKey:@"info"];
+    [titleDic setValue:@[@"拜访客户数",@"新增用户数",@"销量"] forKey:@"2"];
+    
+//    [titleDic setObject:@[@"0",@"0"] forKey:@"info"];
     //获取用户信息
     [self getUserInfo];
     
@@ -102,6 +106,7 @@
     NSLog(@"左侧菜单");
     
     KHYHomeLeftView *leftView = [[KHYHomeLeftView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-40, SCREEN_HEIGHT)];
+    
     leftView.didClickItem = ^(KHYHomeLeftView *view, NSInteger index) {
         NSLog(@"回调成功索引值:%zd",index);
         [self.zh_popupController dismiss];
@@ -116,17 +121,36 @@
             }
             case 1: {
                 //销售管理
-    
+                KHYOrderViewController *vc = [[KHYOrderViewController alloc] init];
+                vc.selectIndex = 0;
+                vc.title = @"直销订单管理";
+                vc.menuViewStyle = WMMenuViewStyleLine;
+                vc.automaticallyCalculatesItemWidths = YES;
+                vc.progressViewIsNaughty = YES;
+                vc.progressWidth = SCREEN_WIDTH / 4;
+                vc.titleSizeSelected = 18;
+                vc.titleColorSelected = kRGB(89, 189, 237);
+                [self.navigationController pushViewController:vc animated:YES];
                 break;
             }
             case 2: {
-                //学术会议管理
-    
+                //患教管理
+                KHYActivityViewController *vc = [[KHYActivityViewController alloc] init];
+                vc.selectIndex = 0;
+                vc.title = @"患教管理";
+                vc.menuViewStyle = WMMenuViewStyleLine;
+                vc.automaticallyCalculatesItemWidths = YES;
+                vc.progressViewIsNaughty = YES;
+                vc.progressWidth = 70;
+                vc.titleSizeSelected = 18;
+                vc.titleColorSelected = MAIN_COLOR;
+                [self.navigationController pushViewController:vc animated:YES];
                 break;
             }
             case 3: {
-                //患教管理
-    
+                //患者管理
+                KHYPatientManageViewController *vc = [[KHYPatientManageViewController alloc] init];
+                [self.navigationController pushViewController:vc animated:YES];
                 break;
             }
             case 4: {
@@ -197,11 +221,13 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return 3;
-    return 2;
+    
+    return 3;
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     if(section==0) {
         return 1;
     }else{
@@ -211,6 +237,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
     if(section==0) {
         return 10;
     }
@@ -218,17 +245,20 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if(indexPath.section==0) {
-        return 180-90;
+        return 180;
     }
     return 45;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    
     return 10;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
     if(section==0) return [UIView new];
     
     //创建“背景层”
@@ -392,21 +422,31 @@
             break;
         }
         case 2: {
-            //查看日程
-        
-            KHYScheduleViewController *scheduleView = [[KHYScheduleViewController alloc] init];
-            [self.navigationController pushViewController:scheduleView animated:YES];
+            //专家提问
+            KHYQuestionListViewController *questionVC = [KHYQuestionListViewController new];
+            questionVC.characterType = 1;
+            [self.navigationController pushViewController:questionVC animated:YES];
             
             break;
         }
         case 3: {
-            //发起报销
-            
+            //患教活动
+            KHYActivityViewController *activityVC = [KHYActivityViewController new];
+            activityVC.selectIndex = 0;
+            activityVC.title = @"患教活动";
+            activityVC.menuViewStyle = WMMenuViewStyleLine;
+            activityVC.automaticallyCalculatesItemWidths = YES;
+            activityVC.progressViewIsNaughty = YES;
+            activityVC.progressWidth = 70;
+            activityVC.titleSizeSelected = 18;
+            activityVC.titleColorSelected = MAIN_COLOR;
+            [self.navigationController pushViewController:activityVC animated:YES];
             break;
         }
         case 4: {
-            //发起公告
-            
+            //查看日程
+            KHYScheduleViewController *scheduleView = [[KHYScheduleViewController alloc] init];
+            [self.navigationController pushViewController:scheduleView animated:YES];
             break;
         }
         case 5: {

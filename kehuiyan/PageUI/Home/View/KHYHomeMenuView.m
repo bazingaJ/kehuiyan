@@ -21,9 +21,9 @@
         NSMutableArray *titleArr = [NSMutableArray array];
         [titleArr addObject:@[@"home_icon_task",@"新建任务",@"0"]];
         [titleArr addObject:@[@"home_icon_customer",@"新增客户",@"1"]];
-        [titleArr addObject:@[@"home_icon_schedule",@"查看日程",@"2"]];
-//        [titleArr addObject:@[@"home_icon_baoxiao",@"发起报销",@"3"]];
-//        [titleArr addObject:@[@"home_icon_gonggao",@"发起公告",@"4"]];
+        [titleArr addObject:@[@"home_ExpertsQuestions",@"专家提问",@"2"]];
+        [titleArr addObject:@[@"home_patientActivity",@"患教活动",@"3"]];
+        [titleArr addObject:@[@"home_icon_schedule",@"查看日程",@"4"]];
 //        [titleArr addObject:@[@"home_icon_qingjia",@"发起请假",@"5"]];
         
         //布局渲染

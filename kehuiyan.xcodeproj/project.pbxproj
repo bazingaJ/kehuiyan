@@ -195,6 +195,31 @@
 		F4FCFC2A202BF5EF007DEB32 /* KHYHomeLeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FCFC29202BF5EF007DEB32 /* KHYHomeLeftView.m */; };
 		F4FCFC2D202BF8A8007DEB32 /* KHYHomeLeftTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FCFC2C202BF8A8007DEB32 /* KHYHomeLeftTopView.m */; };
 		F4FCFC30202BFCDA007DEB32 /* KHYHomeLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FCFC2F202BFCDA007DEB32 /* KHYHomeLeftCell.m */; };
+		F709CC5B207C57DA00BF2E30 /* KHYQuestionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F709CC5A207C57DA00BF2E30 /* KHYQuestionListViewController.m */; };
+		F709CC5F207C5DCA00BF2E30 /* KHYQuestionListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F709CC5D207C5DCA00BF2E30 /* KHYQuestionListCell.m */; };
+		F709CC60207C5DCA00BF2E30 /* KHYQuestionListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F709CC5E207C5DCA00BF2E30 /* KHYQuestionListCell.xib */; };
+		F709CC63207C646300BF2E30 /* KHYQuestionListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F709CC62207C646300BF2E30 /* KHYQuestionListModel.m */; };
+		F709CCA3207C929B00BF2E30 /* KHYActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F709CCA2207C929B00BF2E30 /* KHYActivityViewController.m */; };
+		F709CCA6207C932200BF2E30 /* KHYActivityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F709CCA5207C932200BF2E30 /* KHYActivityListViewController.m */; };
+		F709CCAA207CA42100BF2E30 /* KHYActivityListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F709CCA8207CA42100BF2E30 /* KHYActivityListCell.m */; };
+		F709CCAB207CA42100BF2E30 /* KHYActivityListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F709CCA9207CA42100BF2E30 /* KHYActivityListCell.xib */; };
+		F709CCAE207CB49F00BF2E30 /* KHYParticipationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F709CCAD207CB49F00BF2E30 /* KHYParticipationViewController.m */; };
+		F709CCB2207CBCD600BF2E30 /* KHYHtmlPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F709CCB0207CBCD600BF2E30 /* KHYHtmlPageViewController.m */; };
+		F709CCBA207CC05900BF2E30 /* KHYPatientManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F709CCB9207CC05900BF2E30 /* KHYPatientManageViewController.m */; };
+		F709CCBD207CC25E00BF2E30 /* KHYPatientInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F709CCBC207CC25E00BF2E30 /* KHYPatientInfoViewController.m */; };
+		F709CCC0207DA58E00BF2E30 /* KHYAskRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F709CCBF207DA58E00BF2E30 /* KHYAskRecordViewController.m */; };
+		F709CCC3207DAE1D00BF2E30 /* KHYPatientModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F709CCC2207DAE1D00BF2E30 /* KHYPatientModel.m */; };
+		F719B9B7207E0591007C1E8C /* KHYAnnounceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F719B9B5207E0591007C1E8C /* KHYAnnounceCell.m */; };
+		F719B9B8207E0591007C1E8C /* KHYAnnounceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F719B9B6207E0591007C1E8C /* KHYAnnounceCell.xib */; };
+		F719B9BF207F00D1007C1E8C /* KHYOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F719B9BE207F00D1007C1E8C /* KHYOrderViewController.m */; };
+		F719B9C2207F010B007C1E8C /* KHYOrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F719B9C1207F010B007C1E8C /* KHYOrderListViewController.m */; };
+		F719B9C6207F0A4D007C1E8C /* KHYOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F719B9C4207F0A4D007C1E8C /* KHYOrderCell.m */; };
+		F719B9C7207F0A4D007C1E8C /* KHYOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F719B9C5207F0A4D007C1E8C /* KHYOrderCell.xib */; };
+		F719B9CA207F2F68007C1E8C /* KHYOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F719B9C9207F2F68007C1E8C /* KHYOrderDetailViewController.m */; };
+		F719B9CD207F3AA7007C1E8C /* KHYDeliverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F719B9CC207F3AA7007C1E8C /* KHYDeliverViewController.m */; };
+		F719B9D0207F41EF007C1E8C /* KHYLogisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F719B9CF207F41EF007C1E8C /* KHYLogisticsViewController.m */; };
+		F719B9D4207F4F89007C1E8C /* KHYOrderDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F719B9D2207F4F89007C1E8C /* KHYOrderDetailCell.m */; };
+		F719B9D5207F4F89007C1E8C /* KHYOrderDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F719B9D3207F4F89007C1E8C /* KHYOrderDetailCell.xib */; };
 		F750715F205612E200289A85 /* KHYOrganizationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F750715E205612E200289A85 /* KHYOrganizationViewController.xib */; };
 		F7507163205620AD00289A85 /* KHYOrganizationDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F7507161205620AD00289A85 /* KHYOrganizationDetailVC.m */; };
 		F7507164205620AD00289A85 /* KHYOrganizationDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7507162205620AD00289A85 /* KHYOrganizationDetailVC.xib */; };
@@ -203,6 +228,25 @@
 		F750716E20564ED900289A85 /* KHYMineInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F750716C20564ED900289A85 /* KHYMineInfoCell.xib */; };
 		F75071712056680900289A85 /* NSDictionary+DeleteNull_YD.m in Sources */ = {isa = PBXBuildFile; fileRef = F750716F2056680900289A85 /* NSDictionary+DeleteNull_YD.m */; };
 		F7536D6F2056819E00EC6461 /* JXAppTool.m in Sources */ = {isa = PBXBuildFile; fileRef = F7536D6E2056819E00EC6461 /* JXAppTool.m */; };
+		F763292B208048E200595276 /* KHYComboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F763292A208048E200595276 /* KHYComboViewController.m */; };
+		F763292F20804AE900595276 /* KHYComboCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F763292D20804AE900595276 /* KHYComboCell.m */; };
+		F763293020804AE900595276 /* KHYComboCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F763292E20804AE900595276 /* KHYComboCell.xib */; };
+		F763293320808D2500595276 /* KHYChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F763293220808D2500595276 /* KHYChatViewController.m */; };
+		F763293920808E1800595276 /* ChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F763293720808E1800595276 /* ChatModel.m */; };
+		F763293C20808E2A00595276 /* NSDate+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = F763293A20808E2A00595276 /* NSDate+Utils.m */; };
+		F763294120808E3600595276 /* 0.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F763293E20808E3600595276 /* 0.jpeg */; };
+		F763294220808E3600595276 /* 1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F763293F20808E3600595276 /* 1.jpeg */; };
+		F763294320808E3600595276 /* headImage.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F763294020808E3600595276 /* headImage.jpeg */; };
+		F763295820808E8100595276 /* UUAVAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F763294520808E8100595276 /* UUAVAudioPlayer.m */; };
+		F763295920808E8100595276 /* UUInputFunctionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F763294620808E8100595276 /* UUInputFunctionView.m */; };
+		F763295A20808E8100595276 /* UUMessageContentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F763294820808E8100595276 /* UUMessageContentButton.m */; };
+		F763295B20808E8100595276 /* UUMessageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = F763294E20808E8100595276 /* UUMessageFrame.m */; };
+		F763295C20808E8100595276 /* UUChatTableView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F763295220808E8100595276 /* UUChatTableView.bundle */; };
+		F763295D20808E8100595276 /* UUMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F763295320808E8100595276 /* UUMessageCell.m */; };
+		F763295E20808E8100595276 /* UUProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = F763295420808E8100595276 /* UUProgressHUD.m */; };
+		F763295F20808E8100595276 /* UUMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F763295520808E8100595276 /* UUMessage.m */; };
+		F763296020808E8100595276 /* UUImageAvatarBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = F763295620808E8100595276 /* UUImageAvatarBrowser.m */; };
+		F763296120808E8100595276 /* UUChatCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = F763295720808E8100595276 /* UUChatCategory.m */; };
 		F7633FDC205769C300093A0F /* KHYBirthdayDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7633FDB205769C300093A0F /* KHYBirthdayDatePickerView.m */; };
 		F7633FDE205769E000093A0F /* KHYBirthdayDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7633FDD205769E000093A0F /* KHYBirthdayDatePickerView.xib */; };
 		F7633FE12057BAD100093A0F /* KHYOrganizationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7633FE02057BAD100093A0F /* KHYOrganizationModel.m */; };
@@ -215,6 +259,7 @@
 		F7DB1F23205BC4E9008FC53D /* KHYCityPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DB1F22205BC4E9008FC53D /* KHYCityPickerView.m */; };
 		F7DBD27A205A7D55009DFB86 /* KHYSubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DBD279205A7D55009DFB86 /* KHYSubjectCell.m */; };
 		F7DBD27D205A7F08009DFB86 /* KHYSubjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DBD27C205A7F08009DFB86 /* KHYSubjectModel.m */; };
+		F7DEDD07207DFFD10096FD4C /* KHYAnnounceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DEDD06207DFFD10096FD4C /* KHYAnnounceViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -579,6 +624,51 @@
 		F4FCFC2C202BF8A8007DEB32 /* KHYHomeLeftTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYHomeLeftTopView.m; sourceTree = "<group>"; };
 		F4FCFC2E202BFCDA007DEB32 /* KHYHomeLeftCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYHomeLeftCell.h; sourceTree = "<group>"; };
 		F4FCFC2F202BFCDA007DEB32 /* KHYHomeLeftCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYHomeLeftCell.m; sourceTree = "<group>"; };
+		F709CC59207C57DA00BF2E30 /* KHYQuestionListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYQuestionListViewController.h; sourceTree = "<group>"; };
+		F709CC5A207C57DA00BF2E30 /* KHYQuestionListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYQuestionListViewController.m; sourceTree = "<group>"; };
+		F709CC5C207C5DCA00BF2E30 /* KHYQuestionListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYQuestionListCell.h; sourceTree = "<group>"; };
+		F709CC5D207C5DCA00BF2E30 /* KHYQuestionListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYQuestionListCell.m; sourceTree = "<group>"; };
+		F709CC5E207C5DCA00BF2E30 /* KHYQuestionListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KHYQuestionListCell.xib; sourceTree = "<group>"; };
+		F709CC61207C646300BF2E30 /* KHYQuestionListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYQuestionListModel.h; sourceTree = "<group>"; };
+		F709CC62207C646300BF2E30 /* KHYQuestionListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYQuestionListModel.m; sourceTree = "<group>"; };
+		F709CCA1207C929B00BF2E30 /* KHYActivityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYActivityViewController.h; sourceTree = "<group>"; };
+		F709CCA2207C929B00BF2E30 /* KHYActivityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYActivityViewController.m; sourceTree = "<group>"; };
+		F709CCA4207C932200BF2E30 /* KHYActivityListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYActivityListViewController.h; sourceTree = "<group>"; };
+		F709CCA5207C932200BF2E30 /* KHYActivityListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYActivityListViewController.m; sourceTree = "<group>"; };
+		F709CCA7207CA42100BF2E30 /* KHYActivityListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYActivityListCell.h; sourceTree = "<group>"; };
+		F709CCA8207CA42100BF2E30 /* KHYActivityListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYActivityListCell.m; sourceTree = "<group>"; };
+		F709CCA9207CA42100BF2E30 /* KHYActivityListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KHYActivityListCell.xib; sourceTree = "<group>"; };
+		F709CCAC207CB49F00BF2E30 /* KHYParticipationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYParticipationViewController.h; sourceTree = "<group>"; };
+		F709CCAD207CB49F00BF2E30 /* KHYParticipationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYParticipationViewController.m; sourceTree = "<group>"; };
+		F709CCAF207CBCD600BF2E30 /* KHYHtmlPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYHtmlPageViewController.h; sourceTree = "<group>"; };
+		F709CCB0207CBCD600BF2E30 /* KHYHtmlPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYHtmlPageViewController.m; sourceTree = "<group>"; };
+		F709CCB8207CC05900BF2E30 /* KHYPatientManageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYPatientManageViewController.h; sourceTree = "<group>"; };
+		F709CCB9207CC05900BF2E30 /* KHYPatientManageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYPatientManageViewController.m; sourceTree = "<group>"; };
+		F709CCBB207CC25E00BF2E30 /* KHYPatientInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYPatientInfoViewController.h; sourceTree = "<group>"; };
+		F709CCBC207CC25E00BF2E30 /* KHYPatientInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYPatientInfoViewController.m; sourceTree = "<group>"; };
+		F709CCBE207DA58E00BF2E30 /* KHYAskRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYAskRecordViewController.h; sourceTree = "<group>"; };
+		F709CCBF207DA58E00BF2E30 /* KHYAskRecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYAskRecordViewController.m; sourceTree = "<group>"; };
+		F709CCC1207DAE1D00BF2E30 /* KHYPatientModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYPatientModel.h; sourceTree = "<group>"; };
+		F709CCC2207DAE1D00BF2E30 /* KHYPatientModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYPatientModel.m; sourceTree = "<group>"; };
+		F719B9B4207E0591007C1E8C /* KHYAnnounceCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYAnnounceCell.h; sourceTree = "<group>"; };
+		F719B9B5207E0591007C1E8C /* KHYAnnounceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYAnnounceCell.m; sourceTree = "<group>"; };
+		F719B9B6207E0591007C1E8C /* KHYAnnounceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KHYAnnounceCell.xib; sourceTree = "<group>"; };
+		F719B9BD207F00D1007C1E8C /* KHYOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYOrderViewController.h; sourceTree = "<group>"; };
+		F719B9BE207F00D1007C1E8C /* KHYOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYOrderViewController.m; sourceTree = "<group>"; };
+		F719B9C0207F010B007C1E8C /* KHYOrderListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYOrderListViewController.h; sourceTree = "<group>"; };
+		F719B9C1207F010B007C1E8C /* KHYOrderListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYOrderListViewController.m; sourceTree = "<group>"; };
+		F719B9C3207F0A4D007C1E8C /* KHYOrderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYOrderCell.h; sourceTree = "<group>"; };
+		F719B9C4207F0A4D007C1E8C /* KHYOrderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYOrderCell.m; sourceTree = "<group>"; };
+		F719B9C5207F0A4D007C1E8C /* KHYOrderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KHYOrderCell.xib; sourceTree = "<group>"; };
+		F719B9C8207F2F68007C1E8C /* KHYOrderDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYOrderDetailViewController.h; sourceTree = "<group>"; };
+		F719B9C9207F2F68007C1E8C /* KHYOrderDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYOrderDetailViewController.m; sourceTree = "<group>"; };
+		F719B9CB207F3AA7007C1E8C /* KHYDeliverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYDeliverViewController.h; sourceTree = "<group>"; };
+		F719B9CC207F3AA7007C1E8C /* KHYDeliverViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYDeliverViewController.m; sourceTree = "<group>"; };
+		F719B9CE207F41EF007C1E8C /* KHYLogisticsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYLogisticsViewController.h; sourceTree = "<group>"; };
+		F719B9CF207F41EF007C1E8C /* KHYLogisticsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYLogisticsViewController.m; sourceTree = "<group>"; };
+		F719B9D1207F4F89007C1E8C /* KHYOrderDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYOrderDetailCell.h; sourceTree = "<group>"; };
+		F719B9D2207F4F89007C1E8C /* KHYOrderDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYOrderDetailCell.m; sourceTree = "<group>"; };
+		F719B9D3207F4F89007C1E8C /* KHYOrderDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KHYOrderDetailCell.xib; sourceTree = "<group>"; };
 		F750715E205612E200289A85 /* KHYOrganizationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KHYOrganizationViewController.xib; sourceTree = "<group>"; };
 		F7507160205620AD00289A85 /* KHYOrganizationDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYOrganizationDetailVC.h; sourceTree = "<group>"; };
 		F7507161205620AD00289A85 /* KHYOrganizationDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYOrganizationDetailVC.m; sourceTree = "<group>"; };
@@ -591,6 +681,39 @@
 		F75071702056680900289A85 /* NSDictionary+DeleteNull_YD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+DeleteNull_YD.h"; sourceTree = "<group>"; };
 		F7536D6D2056819D00EC6461 /* JXAppTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXAppTool.h; sourceTree = "<group>"; };
 		F7536D6E2056819E00EC6461 /* JXAppTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXAppTool.m; sourceTree = "<group>"; };
+		F7632929208048E200595276 /* KHYComboViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYComboViewController.h; sourceTree = "<group>"; };
+		F763292A208048E200595276 /* KHYComboViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYComboViewController.m; sourceTree = "<group>"; };
+		F763292C20804AE900595276 /* KHYComboCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYComboCell.h; sourceTree = "<group>"; };
+		F763292D20804AE900595276 /* KHYComboCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYComboCell.m; sourceTree = "<group>"; };
+		F763292E20804AE900595276 /* KHYComboCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KHYComboCell.xib; sourceTree = "<group>"; };
+		F763293120808D2500595276 /* KHYChatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYChatViewController.h; sourceTree = "<group>"; };
+		F763293220808D2500595276 /* KHYChatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYChatViewController.m; sourceTree = "<group>"; };
+		F763293720808E1800595276 /* ChatModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatModel.m; sourceTree = "<group>"; };
+		F763293820808E1800595276 /* ChatModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatModel.h; sourceTree = "<group>"; };
+		F763293A20808E2A00595276 /* NSDate+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utils.m"; sourceTree = "<group>"; };
+		F763293B20808E2A00595276 /* NSDate+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utils.h"; sourceTree = "<group>"; };
+		F763293E20808E3600595276 /* 0.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 0.jpeg; sourceTree = "<group>"; };
+		F763293F20808E3600595276 /* 1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpeg; sourceTree = "<group>"; };
+		F763294020808E3600595276 /* headImage.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = headImage.jpeg; sourceTree = "<group>"; };
+		F763294520808E8100595276 /* UUAVAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUAVAudioPlayer.m; sourceTree = "<group>"; };
+		F763294620808E8100595276 /* UUInputFunctionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUInputFunctionView.m; sourceTree = "<group>"; };
+		F763294720808E8100595276 /* UUMessageFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUMessageFrame.h; sourceTree = "<group>"; };
+		F763294820808E8100595276 /* UUMessageContentButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUMessageContentButton.m; sourceTree = "<group>"; };
+		F763294920808E8100595276 /* UUProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUProgressHUD.h; sourceTree = "<group>"; };
+		F763294A20808E8100595276 /* UUMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUMessageCell.h; sourceTree = "<group>"; };
+		F763294B20808E8100595276 /* UUChatCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUChatCategory.h; sourceTree = "<group>"; };
+		F763294C20808E8100595276 /* UUImageAvatarBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUImageAvatarBrowser.h; sourceTree = "<group>"; };
+		F763294D20808E8100595276 /* UUMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUMessage.h; sourceTree = "<group>"; };
+		F763294E20808E8100595276 /* UUMessageFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUMessageFrame.m; sourceTree = "<group>"; };
+		F763294F20808E8100595276 /* UUInputFunctionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUInputFunctionView.h; sourceTree = "<group>"; };
+		F763295020808E8100595276 /* UUAVAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUAVAudioPlayer.h; sourceTree = "<group>"; };
+		F763295120808E8100595276 /* UUMessageContentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUMessageContentButton.h; sourceTree = "<group>"; };
+		F763295220808E8100595276 /* UUChatTableView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UUChatTableView.bundle; sourceTree = "<group>"; };
+		F763295320808E8100595276 /* UUMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUMessageCell.m; sourceTree = "<group>"; };
+		F763295420808E8100595276 /* UUProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUProgressHUD.m; sourceTree = "<group>"; };
+		F763295520808E8100595276 /* UUMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUMessage.m; sourceTree = "<group>"; };
+		F763295620808E8100595276 /* UUImageAvatarBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUImageAvatarBrowser.m; sourceTree = "<group>"; };
+		F763295720808E8100595276 /* UUChatCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUChatCategory.m; sourceTree = "<group>"; };
 		F7633FDA205769C300093A0F /* KHYBirthdayDatePickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYBirthdayDatePickerView.h; sourceTree = "<group>"; };
 		F7633FDB205769C300093A0F /* KHYBirthdayDatePickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYBirthdayDatePickerView.m; sourceTree = "<group>"; };
 		F7633FDD205769E000093A0F /* KHYBirthdayDatePickerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KHYBirthdayDatePickerView.xib; sourceTree = "<group>"; };
@@ -611,6 +734,8 @@
 		F7DBD279205A7D55009DFB86 /* KHYSubjectCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYSubjectCell.m; sourceTree = "<group>"; };
 		F7DBD27B205A7F08009DFB86 /* KHYSubjectModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYSubjectModel.h; sourceTree = "<group>"; };
 		F7DBD27C205A7F08009DFB86 /* KHYSubjectModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYSubjectModel.m; sourceTree = "<group>"; };
+		F7DEDD05207DFFD10096FD4C /* KHYAnnounceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KHYAnnounceViewController.h; sourceTree = "<group>"; };
+		F7DEDD06207DFFD10096FD4C /* KHYAnnounceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KHYAnnounceViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1297,7 +1422,11 @@
 				F47A2BDB203FB55100656AF6 /* Schedule */,
 				F4CBAE09202EC7FB00DA27D7 /* Task */,
 				F4CBAE01202EC7AA00DA27D7 /* Mine */,
+				F719B9B9207EFB88007C1E8C /* Marketing */,
 				F4FCFC1E202BF07D007DEB32 /* Login */,
+				F709CC9D207C925200BF2E30 /* Activity */,
+				F709CC55207C576300BF2E30 /* QuestionsList */,
+				F709CCB4207CC02000BF2E30 /* Patient */,
 			);
 			path = PageUI;
 			sourceTree = "<group>";
@@ -1734,6 +1863,227 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		F709CC55207C576300BF2E30 /* QuestionsList */ = {
+			isa = PBXGroup;
+			children = (
+				F763294420808E8100595276 /* Class */,
+				F709CC58207C57B800BF2E30 /* Model */,
+				F709CC56207C57B800BF2E30 /* View */,
+				F709CC57207C57B800BF2E30 /* Controller */,
+			);
+			path = QuestionsList;
+			sourceTree = "<group>";
+		};
+		F709CC56207C57B800BF2E30 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F709CC5C207C5DCA00BF2E30 /* KHYQuestionListCell.h */,
+				F709CC5D207C5DCA00BF2E30 /* KHYQuestionListCell.m */,
+				F709CC5E207C5DCA00BF2E30 /* KHYQuestionListCell.xib */,
+				F763292C20804AE900595276 /* KHYComboCell.h */,
+				F763292D20804AE900595276 /* KHYComboCell.m */,
+				F763292E20804AE900595276 /* KHYComboCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F709CC57207C57B800BF2E30 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F709CC59207C57DA00BF2E30 /* KHYQuestionListViewController.h */,
+				F709CC5A207C57DA00BF2E30 /* KHYQuestionListViewController.m */,
+				F763293120808D2500595276 /* KHYChatViewController.h */,
+				F763293220808D2500595276 /* KHYChatViewController.m */,
+				F7632929208048E200595276 /* KHYComboViewController.h */,
+				F763292A208048E200595276 /* KHYComboViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		F709CC58207C57B800BF2E30 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F763293D20808E3600595276 /* photo */,
+				F763293B20808E2A00595276 /* NSDate+Utils.h */,
+				F763293A20808E2A00595276 /* NSDate+Utils.m */,
+				F763293820808E1800595276 /* ChatModel.h */,
+				F763293720808E1800595276 /* ChatModel.m */,
+				F709CC61207C646300BF2E30 /* KHYQuestionListModel.h */,
+				F709CC62207C646300BF2E30 /* KHYQuestionListModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F709CC9D207C925200BF2E30 /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				F709CC9F207C925200BF2E30 /* Model */,
+				F709CCA0207C925200BF2E30 /* View */,
+				F709CC9E207C925200BF2E30 /* Controller */,
+			);
+			path = Activity;
+			sourceTree = "<group>";
+		};
+		F709CC9E207C925200BF2E30 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F709CCA1207C929B00BF2E30 /* KHYActivityViewController.h */,
+				F709CCA2207C929B00BF2E30 /* KHYActivityViewController.m */,
+				F709CCA4207C932200BF2E30 /* KHYActivityListViewController.h */,
+				F709CCA5207C932200BF2E30 /* KHYActivityListViewController.m */,
+				F709CCAC207CB49F00BF2E30 /* KHYParticipationViewController.h */,
+				F709CCAD207CB49F00BF2E30 /* KHYParticipationViewController.m */,
+				F709CCAF207CBCD600BF2E30 /* KHYHtmlPageViewController.h */,
+				F709CCB0207CBCD600BF2E30 /* KHYHtmlPageViewController.m */,
+				F7DEDD05207DFFD10096FD4C /* KHYAnnounceViewController.h */,
+				F7DEDD06207DFFD10096FD4C /* KHYAnnounceViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		F709CC9F207C925200BF2E30 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F709CCA0207C925200BF2E30 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F709CCA7207CA42100BF2E30 /* KHYActivityListCell.h */,
+				F709CCA8207CA42100BF2E30 /* KHYActivityListCell.m */,
+				F709CCA9207CA42100BF2E30 /* KHYActivityListCell.xib */,
+				F719B9B4207E0591007C1E8C /* KHYAnnounceCell.h */,
+				F719B9B5207E0591007C1E8C /* KHYAnnounceCell.m */,
+				F719B9B6207E0591007C1E8C /* KHYAnnounceCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F709CCB4207CC02000BF2E30 /* Patient */ = {
+			isa = PBXGroup;
+			children = (
+				F709CCB6207CC02000BF2E30 /* Model */,
+				F709CCB7207CC02000BF2E30 /* View */,
+				F709CCB5207CC02000BF2E30 /* Controller */,
+			);
+			path = Patient;
+			sourceTree = "<group>";
+		};
+		F709CCB5207CC02000BF2E30 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F709CCB8207CC05900BF2E30 /* KHYPatientManageViewController.h */,
+				F709CCB9207CC05900BF2E30 /* KHYPatientManageViewController.m */,
+				F709CCBB207CC25E00BF2E30 /* KHYPatientInfoViewController.h */,
+				F709CCBC207CC25E00BF2E30 /* KHYPatientInfoViewController.m */,
+				F709CCBE207DA58E00BF2E30 /* KHYAskRecordViewController.h */,
+				F709CCBF207DA58E00BF2E30 /* KHYAskRecordViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		F709CCB6207CC02000BF2E30 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F709CCC1207DAE1D00BF2E30 /* KHYPatientModel.h */,
+				F709CCC2207DAE1D00BF2E30 /* KHYPatientModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F709CCB7207CC02000BF2E30 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F719B9B9207EFB88007C1E8C /* Marketing */ = {
+			isa = PBXGroup;
+			children = (
+				F719B9BB207EFB88007C1E8C /* Model */,
+				F719B9BC207EFB88007C1E8C /* View */,
+				F719B9BA207EFB88007C1E8C /* Controller */,
+			);
+			name = Marketing;
+			path = kehuiyan/PageUI/Marketing;
+			sourceTree = SOURCE_ROOT;
+		};
+		F719B9BA207EFB88007C1E8C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F719B9BD207F00D1007C1E8C /* KHYOrderViewController.h */,
+				F719B9BE207F00D1007C1E8C /* KHYOrderViewController.m */,
+				F719B9C0207F010B007C1E8C /* KHYOrderListViewController.h */,
+				F719B9C1207F010B007C1E8C /* KHYOrderListViewController.m */,
+				F719B9C8207F2F68007C1E8C /* KHYOrderDetailViewController.h */,
+				F719B9C9207F2F68007C1E8C /* KHYOrderDetailViewController.m */,
+				F719B9CB207F3AA7007C1E8C /* KHYDeliverViewController.h */,
+				F719B9CC207F3AA7007C1E8C /* KHYDeliverViewController.m */,
+				F719B9CE207F41EF007C1E8C /* KHYLogisticsViewController.h */,
+				F719B9CF207F41EF007C1E8C /* KHYLogisticsViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		F719B9BB207EFB88007C1E8C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F719B9BC207EFB88007C1E8C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F719B9C3207F0A4D007C1E8C /* KHYOrderCell.h */,
+				F719B9C4207F0A4D007C1E8C /* KHYOrderCell.m */,
+				F719B9C5207F0A4D007C1E8C /* KHYOrderCell.xib */,
+				F719B9D1207F4F89007C1E8C /* KHYOrderDetailCell.h */,
+				F719B9D2207F4F89007C1E8C /* KHYOrderDetailCell.m */,
+				F719B9D3207F4F89007C1E8C /* KHYOrderDetailCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F763293D20808E3600595276 /* photo */ = {
+			isa = PBXGroup;
+			children = (
+				F763293E20808E3600595276 /* 0.jpeg */,
+				F763293F20808E3600595276 /* 1.jpeg */,
+				F763294020808E3600595276 /* headImage.jpeg */,
+			);
+			path = photo;
+			sourceTree = "<group>";
+		};
+		F763294420808E8100595276 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				F763294720808E8100595276 /* UUMessageFrame.h */,
+				F763294E20808E8100595276 /* UUMessageFrame.m */,
+				F763294920808E8100595276 /* UUProgressHUD.h */,
+				F763295420808E8100595276 /* UUProgressHUD.m */,
+				F763294A20808E8100595276 /* UUMessageCell.h */,
+				F763295320808E8100595276 /* UUMessageCell.m */,
+				F763294B20808E8100595276 /* UUChatCategory.h */,
+				F763295720808E8100595276 /* UUChatCategory.m */,
+				F763294C20808E8100595276 /* UUImageAvatarBrowser.h */,
+				F763295620808E8100595276 /* UUImageAvatarBrowser.m */,
+				F763294D20808E8100595276 /* UUMessage.h */,
+				F763295520808E8100595276 /* UUMessage.m */,
+				F763294F20808E8100595276 /* UUInputFunctionView.h */,
+				F763294620808E8100595276 /* UUInputFunctionView.m */,
+				F763295020808E8100595276 /* UUAVAudioPlayer.h */,
+				F763294520808E8100595276 /* UUAVAudioPlayer.m */,
+				F763295120808E8100595276 /* UUMessageContentButton.h */,
+				F763294820808E8100595276 /* UUMessageContentButton.m */,
+				F763295220808E8100595276 /* UUChatTableView.bundle */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1857,14 +2207,21 @@
 				F750715F205612E200289A85 /* KHYOrganizationViewController.xib in Resources */,
 				F4FCFBCC202BED1D007DEB32 /* ZLPhotoLib.bundle in Resources */,
 				F47A2C32204043E200656AF6 /* MHSelectPickerView.xib in Resources */,
+				F709CCAB207CA42100BF2E30 /* KHYActivityListCell.xib in Resources */,
 				F750716E20564ED900289A85 /* KHYMineInfoCell.xib in Resources */,
+				F719B9C7207F0A4D007C1E8C /* KHYOrderCell.xib in Resources */,
 				F4CA65C4202BE33F00524443 /* LaunchScreen.storyboard in Resources */,
 				F4FCFBDD202BED1D007DEB32 /* MBProgressHUD.bundle in Resources */,
 				F4FCFBE4202BED1D007DEB32 /* icon_chose_bottom@2x.png in Resources */,
+				F763295C20808E8100595276 /* UUChatTableView.bundle in Resources */,
+				F719B9B8207E0591007C1E8C /* KHYAnnounceCell.xib in Resources */,
 				F7633FEB2057C76100093A0F /* KHYOrganizationMamberVC.xib in Resources */,
+				F763293020804AE900595276 /* KHYComboCell.xib in Resources */,
 				F4FCFBEC202BED1D007DEB32 /* UMSocialSDKPromptResources.bundle in Resources */,
 				F4FCFBE6202BED1D007DEB32 /* icon_chose_arrow_sel@2x.png in Resources */,
+				F763294320808E3600595276 /* headImage.jpeg in Resources */,
 				F7633FEF2058BE8D00093A0F /* KHYUpdatePwdViewController.xib in Resources */,
+				F719B9D5207F4F89007C1E8C /* KHYOrderDetailCell.xib in Resources */,
 				F7507164205620AD00289A85 /* KHYOrganizationDetailVC.xib in Resources */,
 				F4FCFBE3202BED1D007DEB32 /* icon_chose_arrow_nor@2x.png in Resources */,
 				F7633FDE205769E000093A0F /* KHYBirthdayDatePickerView.xib in Resources */,
@@ -1872,8 +2229,11 @@
 				F4CA65C1202BE33F00524443 /* Assets.xcassets in Resources */,
 				F4CA65BF202BE33F00524443 /* Main.storyboard in Resources */,
 				F7633FE62057BEE500093A0F /* KHYOrganizationDetailListVC.xib in Resources */,
+				F763294220808E3600595276 /* 1.jpeg in Resources */,
 				F4FCFBDF202BED1D007DEB32 /* address.plist in Resources */,
 				F4FCFBE9202BED1D007DEB32 /* UMSocialSDKResources.bundle in Resources */,
+				F709CC60207C5DCA00BF2E30 /* KHYQuestionListCell.xib in Resources */,
+				F763294120808E3600595276 /* 0.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1961,6 +2321,7 @@
 				F4FCFC1D202BEF8D007DEB32 /* KBarButtonItem.m in Sources */,
 				F4FCFB3B202BECF7007DEB32 /* UIView+Extension.m in Sources */,
 				F4FCFBDB202BED1D007DEB32 /* ZLPhotoPickerGroupTableViewCell.m in Sources */,
+				F709CCAE207CB49F00BF2E30 /* KHYParticipationViewController.m in Sources */,
 				F4F3B4D720413553000C7541 /* KHYMessageModel.m in Sources */,
 				F47A2C212040404600656AF6 /* KHYHospitalModel.m in Sources */,
 				F4FCFBFE202BED2E007DEB32 /* BaseTableViewController.m in Sources */,
@@ -1970,38 +2331,52 @@
 				F4B9647E204CE70F00B88C34 /* KHYDoctorModel.m in Sources */,
 				F47A2BE7203FBD1D00656AF6 /* HMSegmentedControl.m in Sources */,
 				F4FCFBC0202BED1D007DEB32 /* ZLCameraViewController.m in Sources */,
+				F709CCC0207DA58E00BF2E30 /* KHYAskRecordViewController.m in Sources */,
+				F709CCA6207C932200BF2E30 /* KHYActivityListViewController.m in Sources */,
 				F4F3B4D120413537000C7541 /* KHYMineMessageViewController.m in Sources */,
 				F4FCFBD5202BED1D007DEB32 /* ZLNavigationController.m in Sources */,
 				F4F3B4EF20414156000C7541 /* KHYMineWebViewController.m in Sources */,
 				F47A2C0520400DAF00656AF6 /* KHYTaskAddNextViewController.m in Sources */,
+				F763295D20808E8100595276 /* UUMessageCell.m in Sources */,
 				F4FCFBD6202BED1D007DEB32 /* ZLPhotoPickerViewController.m in Sources */,
 				F4F3B4E620413F08000C7541 /* KHYMineSettingViewController.m in Sources */,
 				F4FCFC24202BF092007DEB32 /* KHYLoginViewController.m in Sources */,
 				F4F3B4D420413549000C7541 /* KHYMineMessageCell.m in Sources */,
 				F4B9647B204CE6F400B88C34 /* KHYDoctorCell.m in Sources */,
+				F763295820808E8100595276 /* UUAVAudioPlayer.m in Sources */,
 				F47A2BF3203FEAD800656AF6 /* KHYScheduleMenuView.m in Sources */,
 				F7DBD27A205A7D55009DFB86 /* KHYSubjectCell.m in Sources */,
 				F4B15CC6203022ED002C6FDF /* KHYDatePickerView.m in Sources */,
 				F47A2C42204046F400656AF6 /* KHYCustomerDetailViewController.m in Sources */,
 				F4FCFBFD202BED2E007DEB32 /* BaseNavigationController.m in Sources */,
 				F4FCFB37202BECF7007DEB32 /* UIView+Touch.m in Sources */,
+				F763292B208048E200595276 /* KHYComboViewController.m in Sources */,
+				F719B9C2207F010B007C1E8C /* KHYOrderListViewController.m in Sources */,
 				F750716D20564ED900289A85 /* KHYMineInfoCell.m in Sources */,
+				F7DEDD07207DFFD10096FD4C /* KHYAnnounceViewController.m in Sources */,
+				F709CC63207C646300BF2E30 /* KHYQuestionListModel.m in Sources */,
 				F4FCFBE1202BED1D007DEB32 /* HcdGuideView.m in Sources */,
 				F4B15CBD202FD152002C6FDF /* KHYTaskTypeSheetView.m in Sources */,
 				F4FCFBF6202BED1D007DEB32 /* Base64Util.m in Sources */,
 				F4CBAE1B202ED30200DA27D7 /* KHYTaskAddDayViewController.m in Sources */,
 				F7633FE12057BAD100093A0F /* KHYOrganizationModel.m in Sources */,
 				F4FCFBD1202BED1D007DEB32 /* ZLPhotoAssets.m in Sources */,
+				F709CCC3207DAE1D00BF2E30 /* KHYPatientModel.m in Sources */,
 				F47A2C1E2040403B00656AF6 /* KHYHospitalCell.m in Sources */,
 				F47A2C392040451C00656AF6 /* KHYPositionSelectedViewController.m in Sources */,
+				F763295E20808E8100595276 /* UUProgressHUD.m in Sources */,
+				F763296120808E8100595276 /* UUChatCategory.m in Sources */,
+				F709CC5F207C5DCA00BF2E30 /* KHYQuestionListCell.m in Sources */,
 				F4541F15202E8E7C003391F6 /* KHYHomeMenuView.m in Sources */,
 				F47A2C2A2040424D00656AF6 /* KHYKeshiModel.m in Sources */,
 				F4F3B4BE20410142000C7541 /* KHYCustomerVisitModel.m in Sources */,
+				F763293C20808E2A00595276 /* NSDate+Utils.m in Sources */,
 				F4B15CC0202FD2E6002C6FDF /* KHYTaskCycleSheetView.m in Sources */,
 				F4F3B4DF2041377A000C7541 /* UIView+Empty.m in Sources */,
 				F4FCFC0B202BED58007DEB32 /* AppDelegate+XHLaunchAd.m in Sources */,
 				F47A2BFC204000A200656AF6 /* KHYDatePickerMonthView.m in Sources */,
 				F4541F12202E8A47003391F6 /* KHYHomeTopView.m in Sources */,
+				F763295920808E8100595276 /* UUInputFunctionView.m in Sources */,
 				F4CBAE08202EC7F500DA27D7 /* KHYMineViewController.m in Sources */,
 				F4FCFBE7202BED1D007DEB32 /* DALabeledCircularProgressView.m in Sources */,
 				F4FCFC0A202BED58007DEB32 /* AppDelegate+UMSoc.m in Sources */,
@@ -2015,11 +2390,15 @@
 				F4CA65C7202BE33F00524443 /* main.m in Sources */,
 				F47A2BE1203FB56A00656AF6 /* KHYScheduleViewController.m in Sources */,
 				F47A2C0C2040197400656AF6 /* KHYCustomerViewController.m in Sources */,
+				F763295F20808E8100595276 /* UUMessage.m in Sources */,
 				F4FCFBC5202BED1D007DEB32 /* ZLPhotoRect.m in Sources */,
+				F763295A20808E8100595276 /* UUMessageContentButton.m in Sources */,
+				F709CCAA207CA42100BF2E30 /* KHYActivityListCell.m in Sources */,
 				F4FCFC0E202BED58007DEB32 /* AppDelegate+Extension.m in Sources */,
 				F4B9648A204E434C00B88C34 /* KHYSubjectKeshiSelectedViewController.m in Sources */,
 				F4FCFBC3202BED1D007DEB32 /* ZLCameraView.m in Sources */,
 				F4B9646F20491E0600B88C34 /* KHYDateHelper.m in Sources */,
+				F719B9C6207F0A4D007C1E8C /* KHYOrderCell.m in Sources */,
 				F4B9646920491DB800B88C34 /* KHYScheduleMonthView.m in Sources */,
 				F4FCFBE8202BED1D007DEB32 /* DACircularProgressView.m in Sources */,
 				F4FCFBD9202BED1D007DEB32 /* ZLPhotoPickerFooterCollectionReusableView.m in Sources */,
@@ -2029,6 +2408,7 @@
 				F47A2C33204043E200656AF6 /* MHSelectPickerView.m in Sources */,
 				F4FCFBC9202BED1D007DEB32 /* ZLPhotoPickerBrowserPhotoView.m in Sources */,
 				F7536D6F2056819E00EC6461 /* JXAppTool.m in Sources */,
+				F719B9B7207E0591007C1E8C /* KHYAnnounceCell.m in Sources */,
 				F4FCFBC6202BED1D007DEB32 /* ZLPhotoPickerBrowserViewController+SignlePhotoBrowser.m in Sources */,
 				F7633FEA2057C76100093A0F /* KHYOrganizationMamberVC.m in Sources */,
 				F4FCFBDE202BED1D007DEB32 /* AddressPickView.m in Sources */,
@@ -2038,6 +2418,7 @@
 				F4F3B4EC204140C8000C7541 /* KHYMineSettingCell.m in Sources */,
 				F47A2BF9203FF65700656AF6 /* KHYDatePickerWeekView.m in Sources */,
 				F47A2C272040424300656AF6 /* KHYKeshiCell.m in Sources */,
+				F709CCA3207C929B00BF2E30 /* KHYActivityViewController.m in Sources */,
 				F4FCFC0D202BED58007DEB32 /* AppDelegate+JPUSH.m in Sources */,
 				F4FCFC2D202BF8A8007DEB32 /* KHYHomeLeftTopView.m in Sources */,
 				F4B96491205237B700B88C34 /* KHYTaskSubmitViewController.m in Sources */,
@@ -2066,21 +2447,32 @@
 				F7633FE52057BEE500093A0F /* KHYOrganizationDetailListVC.m in Sources */,
 				F4FCFB2A202BECE8007DEB32 /* HelperManager.m in Sources */,
 				F4FCFBD8202BED1D007DEB32 /* ZLPhotoPickerCollectionViewCell.m in Sources */,
+				F763293320808D2500595276 /* KHYChatViewController.m in Sources */,
 				F4B96478204CE65A00B88C34 /* KHYDoctorSelectedViewController.m in Sources */,
 				F4FCFBC1202BED1D007DEB32 /* ZLCameraImageView.m in Sources */,
+				F709CCBA207CC05900BF2E30 /* KHYPatientManageViewController.m in Sources */,
 				F4FCFBD7202BED1D007DEB32 /* ZLPhotoPickerCollectionView.m in Sources */,
+				F709CCB2207CBCD600BF2E30 /* KHYHtmlPageViewController.m in Sources */,
+				F719B9CD207F3AA7007C1E8C /* KHYDeliverViewController.m in Sources */,
+				F719B9BF207F00D1007C1E8C /* KHYOrderViewController.m in Sources */,
 				F4FCFBCF202BED1D007DEB32 /* ZLPhotoPickerDatas.m in Sources */,
+				F709CC5B207C57DA00BF2E30 /* KHYQuestionListViewController.m in Sources */,
+				F719B9CA207F2F68007C1E8C /* KHYOrderDetailViewController.m in Sources */,
 				F4FCFB2C202BECE8007DEB32 /* URLManager.m in Sources */,
 				F4B9646620491DA100B88C34 /* KHYScheduleCalendarView.m in Sources */,
+				F763293920808E1800595276 /* ChatModel.m in Sources */,
 				F4FCFBD0202BED1D007DEB32 /* ZLPhotoPickerGroup.m in Sources */,
 				F47A2C1820401F9800656AF6 /* KHYCustomerEditViewController.m in Sources */,
 				F4FCFBF4202BED1D007DEB32 /* MD5Encryption.m in Sources */,
 				F4FCFB38202BECF7007DEB32 /* UIButton+CountDown.m in Sources */,
 				F4FCFB3A202BECF7007DEB32 /* NSString+Extension.m in Sources */,
 				F4F3B4FF20414DA1000C7541 /* KHYStatisticsCell.m in Sources */,
+				F709CCBD207CC25E00BF2E30 /* KHYPatientInfoViewController.m in Sources */,
 				F4FCFBD3202BED1D007DEB32 /* ZLPhotoPickerGroupViewController.m in Sources */,
 				F4B9648D2051406B00B88C34 /* KHYTaskDetailViewController.m in Sources */,
+				F719B9D4207F4F89007C1E8C /* KHYOrderDetailCell.m in Sources */,
 				F4FCFBCB202BED1D007DEB32 /* ZLPhotoPickerBrowserPhotoScrollView.m in Sources */,
+				F763292F20804AE900595276 /* KHYComboCell.m in Sources */,
 				F4F3B4F520414866000C7541 /* KHYMineInfoViewController.m in Sources */,
 				F4FCFBCE202BED1D007DEB32 /* UIView+ZLExtension.m in Sources */,
 				F47A2C1220401A4A00656AF6 /* KHYCustomerModel.m in Sources */,
@@ -2091,13 +2483,16 @@
 				F4B96481204CEC0E00B88C34 /* KHYTaskTypeModel.m in Sources */,
 				F7DBD27D205A7F08009DFB86 /* KHYSubjectModel.m in Sources */,
 				F47A2BF0203FE7CD00656AF6 /* KHYScheduleWeekTopView.m in Sources */,
+				F763295B20808E8100595276 /* UUMessageFrame.m in Sources */,
 				F4CBAE15202EC8C800DA27D7 /* KHYTaskModel.m in Sources */,
 				F4B9646C20491DDB00B88C34 /* KHYScheduleDayCell.m in Sources */,
 				F4FCFB39202BECF7007DEB32 /* ZTELimitTextView.m in Sources */,
+				F719B9D0207F41EF007C1E8C /* KHYLogisticsViewController.m in Sources */,
 				F4FCFBD2202BED1D007DEB32 /* UIViewController+Alert.m in Sources */,
 				F47A2BFF2040028200656AF6 /* KHYDatePickerQuarterlyView.m in Sources */,
 				F4CBAE12202EC8BE00DA27D7 /* KHYTaskCell.m in Sources */,
 				F4FCFBF3202BED1D007DEB32 /* DESManager.m in Sources */,
+				F763296020808E8100595276 /* UUImageAvatarBrowser.m in Sources */,
 				F47A2C3C2040452A00656AF6 /* KHYPositionCell.m in Sources */,
 				F4FCFBE2202BED1D007DEB32 /* HcdGuideViewCell.m in Sources */,
 				F47A2C022040046200656AF6 /* KHYDatePickerYearView.m in Sources */,

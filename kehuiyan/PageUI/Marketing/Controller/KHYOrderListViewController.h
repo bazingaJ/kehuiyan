@@ -14,4 +14,6 @@
 
 @property (nonatomic, strong) NSString *mem_id;
 
+@property (nonatomic, strong) NSString *patient_id;
+
 @end

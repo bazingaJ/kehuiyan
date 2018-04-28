@@ -25,10 +25,18 @@ static NSString *const cellIdentifier = @"KHYActivityListCell1";
     [self setHiddenHeaderRefresh:YES];
     
     self.bottomH = 50;
-    if ([[HelperManager CreateInstance].position_id isEqualToString:@"4"]) {
-        self.bottomH = 100;
-    }
     
+    if (self.memberID) {
+        if ([self.isShowBtn isEqualToString:@"1"]) {
+            if ([self.memberID isEqualToString:[HelperManager CreateInstance].user_id]) {
+                self.bottomH = 100;
+            }
+        }
+    }else{
+        if ([[HelperManager CreateInstance].is_send_activity isEqualToString:@"1"]) {
+            self.bottomH = 100;
+        }
+    }
     [super viewDidLoad];
     
     self.tableView.showsVerticalScrollIndicator = YES;
@@ -104,7 +112,7 @@ static NSString *const cellIdentifier = @"KHYActivityListCell1";
     param[@"app"] = @"home";
     param[@"act"] = @"getActivityList";
     param[@"cate_id"] = self.selectIndex;
-    if (![[HelperManager CreateInstance].position_id isEqualToString:@"4"] && ![[HelperManager CreateInstance].position_id isEqualToString:@"20"]) {
+    if ([JXAppTool isLeader]) {
         param[@"mem_id"] = self.memberID;
     }
     [MBProgressHUD showSimple:self.view];

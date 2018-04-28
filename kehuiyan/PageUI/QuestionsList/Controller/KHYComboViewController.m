@@ -161,13 +161,20 @@ static NSString *cellIdntifier = @"KHYComboCell1";
 - (void)sureBtnClick
 {
     
-    if ([self.isAnswer isEqualToString:@"1"])
-    {
+    if ([self.isAnswer isEqualToString:@"1"]){
+        
         NSArray *array = self.navigationController.viewControllers;
         //从数组中找到上一个界面的对象
-        KHYAnswerDetailVC *first = [array objectAtIndex:3];
+        KHYAnswerDetailVC *first = [array objectAtIndex:array.count-2];
         KHYComboModel *currentModel = self.dataArr[self.selectIndex.row];
         first.model = currentModel;
+    }
+    else{
+        
+        if (self.choicePackge) {
+            KHYComboModel *currentModel = self.dataArr[self.selectIndex.row];
+            self.choicePackge(currentModel);
+        }
     }
     [self.navigationController popViewControllerAnimated:YES];
 }

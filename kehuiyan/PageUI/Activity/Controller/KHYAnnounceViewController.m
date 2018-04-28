@@ -441,8 +441,7 @@ static NSString *const cellIdentifier5 = @"KHYAnnounceCell5";
 }
 
 // 单元格 第一个时间选择
-- (void)firstBtnClick:(UIButton *)button
-{
+- (void)firstBtnClick:(UIButton *)button{
     
     KHYAnnounceCell *cell = (KHYAnnounceCell *)button.superview.superview;
     NSIndexPath *index = [self.tableView indexPathForCell:cell];
@@ -451,33 +450,33 @@ static NSString *const cellIdentifier5 = @"KHYAnnounceCell5";
     selectDatePicker.datePickerMode = UIDatePickerModeDate;
     [selectDatePicker didFinishSelectedDate:^(NSDate *selectedDate) {
         
-            if (index.row == 4) {
-                NSString *beginDate = [NSString dateStringWithDate:selectedDate DateFormat:@"yyyyMMdd"];
-                NSString *nowDate = [NSString dateStringWithDate:[NSDate date] DateFormat:@"yyyyMMdd"];
-                if ([beginDate integerValue] < [nowDate integerValue]) {
-                    [MBProgressHUD showMessage:@"活动开始时间不能小于当前时间" toView:self.view];
-                    return ;
-                }else{
-                NSString *beginTime = [NSString dateStringWithDate:selectedDate DateFormat:@"yyyy-MM-dd"];
-                [cell.firstBtn setTitle:beginTime forState:UIControlStateNormal];
-                [cell.secondBtn setTitle:@"" forState:UIControlStateNormal];
-                self.model.start_time = beginTime;
-                self.model.end_time = @"";
-                }
+        if (index.row == 4) {
+            NSString *beginDate = [NSString dateStringWithDate:selectedDate DateFormat:@"yyyyMMdd"];
+            NSString *nowDate = [NSString dateStringWithDate:[NSDate date] DateFormat:@"yyyyMMdd"];
+            if ([beginDate integerValue] < [nowDate integerValue]) {
+                [MBProgressHUD showMessage:@"活动开始时间不能小于当前时间" toView:self.view];
+                return ;
             }else{
-                NSString *beginDate = [NSString dateStringWithDate:selectedDate DateFormat:@"yyyyMMdd"];
-                NSString *nowDate = [NSString dateStringWithDate:[NSDate date] DateFormat:@"yyyyMMdd"];
-                if ([beginDate integerValue] < [nowDate integerValue]) {
-                    [MBProgressHUD showMessage:@"报名开始时间不能小于当前时间" toView:self.view];
-                    return ;
-                }else{
-                NSString *beginTime = [NSString dateStringWithDate:selectedDate DateFormat:@"yyyy-MM-dd"];
-                [cell.firstBtn setTitle:beginTime forState:UIControlStateNormal];
-                [cell.secondBtn setTitle:@"" forState:UIControlStateNormal];
-                self.model.sign_start_time = beginTime;
-                self.model.sign_end_time = @"";
-                }
+            NSString *beginTime = [NSString dateStringWithDate:selectedDate DateFormat:@"yyyy-MM-dd"];
+            [cell.firstBtn setTitle:beginTime forState:UIControlStateNormal];
+            [cell.secondBtn setTitle:@"" forState:UIControlStateNormal];
+            self.model.start_time = beginTime;
+            self.model.end_time = @"";
             }
+        }else{
+            NSString *beginDate = [NSString dateStringWithDate:selectedDate DateFormat:@"yyyyMMdd"];
+            NSString *startDateStr = [self.model.start_time stringByReplacingOccurrencesOfString:@"-" withString:@""];
+            if ([beginDate integerValue] >= [startDateStr integerValue]) {
+                [MBProgressHUD showMessage:@"报名开始时间不能大于等于活动开始时间" toView:self.view];
+                return ;
+            }else{
+            NSString *beginTime = [NSString dateStringWithDate:selectedDate DateFormat:@"yyyy-MM-dd"];
+            [cell.firstBtn setTitle:beginTime forState:UIControlStateNormal];
+            [cell.secondBtn setTitle:@"" forState:UIControlStateNormal];
+            self.model.sign_start_time = beginTime;
+            self.model.sign_end_time = @"";
+            }
+        }
             
         
     }];
@@ -508,10 +507,22 @@ static NSString *const cellIdentifier5 = @"KHYAnnounceCell5";
                 self.model.end_time = beginTime;
                 }
             }else{
-                NSString *beginDate = self.model.sign_start_time;
+                
                 NSDateFormatter *format = [[NSDateFormatter alloc] init];
                 [format setDateFormat:@"yyyy-MM-dd"];
+                // 报名开始时间
+                NSString *beginDate = self.model.sign_start_time;
                 NSDate *beforedate = [format dateFromString:beginDate];
+                
+                
+                // 活动开始时间
+                NSString *startDateStr = self.model.start_time;
+                NSDate *HuodongStarteDate = [format dateFromString:startDateStr];
+                if ([selectedDate timeIntervalSince1970] > [HuodongStarteDate timeIntervalSince1970]) {
+                    [MBProgressHUD showMessage:@"报名结束时间不能大于等于活动开始时间" toView:self.view];
+                    return ;
+                }
+                
                 if ([selectedDate timeIntervalSince1970] < [beforedate timeIntervalSince1970]) {
                     [MBProgressHUD showMessage:@"报名结束时间不能小于报名开始时间" toView:self.view];
                     return ;

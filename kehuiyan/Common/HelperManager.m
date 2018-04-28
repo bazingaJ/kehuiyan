@@ -156,6 +156,44 @@ static HelperManager *_createInstance;
 }
 
 /**
+ *  级别ID
+ */
+- (NSString *)level_id {
+    NSDictionary *userDic = [self getUserDefaultInfo];
+    NSString *levelid = [userDic objectForKey:@"level_id"];
+    return levelid;
+}
+
+/**
+ *  级别名称
+ */
+- (NSString *)level_name {
+    NSDictionary *userDic = [self getUserDefaultInfo];
+    NSString *levelname = [userDic objectForKey:@"level_name"];
+    return levelname;
+}
+
+/**
+ *  类别 1.普通 2.专家 3.营养师
+ */
+- (NSString *)type {
+    NSDictionary *userDic = [self getUserDefaultInfo];
+    NSString *typename = [userDic objectForKey:@"type"];
+    return typename;
+}
+
+/**
+ *  是否可以发布活动
+ */
+- (NSString *)is_send_activity {
+    NSDictionary *userDic = [self getUserDefaultInfo];
+    NSString *issendactivity = [userDic objectForKey:@"is_send_activity"];
+    return issendactivity;
+}
+
+
+
+/**
  *  支付支付穿处理
  */
 - (NSDictionary *)dictionaryFromURLParameters:(NSString *)str {
@@ -170,47 +208,6 @@ static HelperManager *_createInstance;
     return params;
 }
 
-/**
- *  获取BTC总数
- */
-- (NSString *)btcNum {
-    NSDictionary *dataDic = [self getTotalNum];
-    NSString *btc_total_num = [dataDic objectForKey:@"btc_total_num"];
-    return IsStringEmpty(btc_total_num) ? @"0" : btc_total_num;
-}
 
-/**
- *  获取ETH总数
- */
-- (NSString *)ethNum {
-    NSDictionary *dataDic = [self getTotalNum];
-    NSString *eth_total_num = [dataDic objectForKey:@"eth_total_num"];
-    return IsStringEmpty(eth_total_num) ? @"0" : eth_total_num;
-}
-
-/**
- *  获取BCH总数
- */
-- (NSString *)bchNum {
-    NSDictionary *dataDic = [self getTotalNum];
-    NSString *bch_total_num = [dataDic objectForKey:@"bch_total_num"];
-    return IsStringEmpty(bch_total_num) ? @"0" : bch_total_num;
-}
-
-/**
- *  获取各币种的数量
- */
-- (NSDictionary *)getTotalNum {
-    NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    [param setValue:@"ucenter" forKey:@"app"];
-    [param setValue:@"getMyInfo" forKey:@"act"];
-    NSDictionary *json = [HttpRequestEx getSyncWidthURL:SERVICE_URL param:param];
-    NSString *code = [json objectForKey:@"code"];
-    if([code isEqualToString:SUCCESS]) {
-        NSDictionary *dataDic = [json objectForKey:@"data"];
-        return dataDic;
-    }
-    return nil;
-}
 
 @end

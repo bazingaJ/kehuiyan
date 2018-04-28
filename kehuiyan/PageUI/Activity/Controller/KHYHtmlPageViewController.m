@@ -53,8 +53,6 @@
 /// 5 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     webView.userInteractionEnabled = YES;
-    //NSString *title = [_webView title];
-    //if (title.length) self.title = title;
     
     [NSThread sleepForTimeInterval:0.5];
     [UIView animateWithDuration:0.3 animations:^{

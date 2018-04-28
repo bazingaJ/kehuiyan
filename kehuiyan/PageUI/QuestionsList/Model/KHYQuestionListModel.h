@@ -36,5 +36,7 @@
 @property (nonatomic , copy) NSString              * ask_date;
 //回答内容
 @property (nonatomic , copy) NSString              * reply_content;
+// 药品信息
+@property (nonatomic, strong) NSDictionary         * package_info;
 
 @end

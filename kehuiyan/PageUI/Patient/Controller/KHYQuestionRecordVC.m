@@ -131,16 +131,14 @@ static NSString *const cellIdentifier1 = @"KHYAskRecordCell2";
     return nil;
 }
 
-
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     if (indexPath.row == 0) return;
     KHYAskRecordViewController *vc = [[KHYAskRecordViewController alloc] init];
     vc.title = @"提问详情";
-//    vc.model = self.dataArr[indexPath.row - 1];
-//    vc.isPatient = @"1";
+    vc.model = self.dataArr[indexPath.row-1];
+    vc.isPatient = @"1";
     [self.navigationController pushViewController:vc animated:YES];
     
 }

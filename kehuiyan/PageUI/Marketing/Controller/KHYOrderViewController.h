@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) NSString *memberID;
 
+@property (nonatomic, strong) NSString *patient_id;
+
 @end

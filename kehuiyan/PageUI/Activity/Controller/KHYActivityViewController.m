@@ -61,16 +61,33 @@
     view.image = [UIImage imageNamed:@"line"];
     [self.view addSubview:view];
     
-    if ([[HelperManager CreateInstance].position_id isEqualToString:@"4"])
-    {
-        UIButton *bottomBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        bottomBtn.frame = CGRectMake(0, SCREEN_HEIGHT - HOME_INDICATOR_HEIGHT - NAVIGATION_BAR_HEIGHT - 50, SCREEN_WIDTH, 50);
-        [bottomBtn setBackgroundColor:kRGB(89, 189, 237)];
-        [bottomBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [bottomBtn setTitle:@"发布活动" forState:UIControlStateNormal];
-        [bottomBtn addTarget:self action:@selector(announce) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:bottomBtn];
+    if (self.member_id) {
+        if ([self.isShowBtn isEqualToString:@"1"]) {
+            if ([self.member_id isEqualToString:[HelperManager CreateInstance].user_id]) {
+                UIButton *bottomBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+                bottomBtn.frame = CGRectMake(0, SCREEN_HEIGHT - HOME_INDICATOR_HEIGHT - NAVIGATION_BAR_HEIGHT - 50, SCREEN_WIDTH, 50);
+                [bottomBtn setBackgroundColor:kRGB(89, 189, 237)];
+                [bottomBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                [bottomBtn setTitle:@"发布活动" forState:UIControlStateNormal];
+                [bottomBtn addTarget:self action:@selector(announce) forControlEvents:UIControlEventTouchUpInside];
+                [self.view addSubview:bottomBtn];
+            }
+            
+        }
+    }else{
+        if ([[HelperManager CreateInstance].is_send_activity isEqualToString:@"1"])
+        {
+            UIButton *bottomBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            bottomBtn.frame = CGRectMake(0, SCREEN_HEIGHT - HOME_INDICATOR_HEIGHT - NAVIGATION_BAR_HEIGHT - 50, SCREEN_WIDTH, 50);
+            [bottomBtn setBackgroundColor:kRGB(89, 189, 237)];
+            [bottomBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [bottomBtn setTitle:@"发布活动" forState:UIControlStateNormal];
+            [bottomBtn addTarget:self action:@selector(announce) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:bottomBtn];
+        }
     }
+    
+    
     
     
     
@@ -98,6 +115,16 @@
     NSDictionary *smallDic = self.originData[index];
     vc.selectIndex = smallDic[@"cate_id"];
     vc.memberID = self.member_id;
+    if (self.member_id) {
+        if ([self.member_id isEqualToString:[HelperManager CreateInstance].user_id]) {
+            vc.isShowBtn = @"1";
+        }else{
+            vc.isShowBtn = @"2";
+        }
+        
+    }else{
+        vc.isShowBtn = @"2";
+    }
     return vc;
 }
 
@@ -115,14 +142,35 @@
 - (CGRect)pageController:(WMPageController *)pageController preferredFrameForContentView:(WMScrollView *)contentView {
     
     CGFloat originY = CGRectGetMaxY([self pageController:pageController preferredFrameForMenuView:self.menuView]);
-    if ([[HelperManager CreateInstance].position_id isEqualToString:@"4"])
-    {
-        return CGRectMake(0, originY, self.view.frame.size.width, SCREEN_HEIGHT - HOME_INDICATOR_HEIGHT - NAVIGATION_BAR_HEIGHT - 50 - 50);
+    
+    if (self.member_id) {
+        
+        if ([self.isShowBtn isEqualToString:@"1"])
+        {
+            if ([self.member_id isEqualToString:[HelperManager CreateInstance].user_id]) {
+                return CGRectMake(0, originY, self.view.frame.size.width, SCREEN_HEIGHT - HOME_INDICATOR_HEIGHT - NAVIGATION_BAR_HEIGHT - 50 - 50);
+            }else{
+                return CGRectMake(0, originY, self.view.frame.size.width, SCREEN_HEIGHT - HOME_INDICATOR_HEIGHT - NAVIGATION_BAR_HEIGHT);
+            }
+            
+        }
+        else
+        {
+            return CGRectMake(0, originY, self.view.frame.size.width, SCREEN_HEIGHT - HOME_INDICATOR_HEIGHT - NAVIGATION_BAR_HEIGHT);
+        }
+    }else{
+        if ([[HelperManager CreateInstance].is_send_activity isEqualToString:@"1"])
+        {
+            return CGRectMake(0, originY, self.view.frame.size.width, SCREEN_HEIGHT - HOME_INDICATOR_HEIGHT - NAVIGATION_BAR_HEIGHT - 50 - 50);
+        }
+        else
+        {
+            return CGRectMake(0, originY, self.view.frame.size.width, SCREEN_HEIGHT - HOME_INDICATOR_HEIGHT - NAVIGATION_BAR_HEIGHT);
+        }
     }
-    else
-    {
-        return CGRectMake(0, originY, self.view.frame.size.width, SCREEN_HEIGHT - HOME_INDICATOR_HEIGHT - NAVIGATION_BAR_HEIGHT);
-    }
+    
+    
+    
     
 }
 

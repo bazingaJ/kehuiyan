@@ -300,19 +300,15 @@
     [alert addAction:action];
     [viewController presentViewController:alert animated:YES completion:nil];
 }
-
+// level_id <= 3 是领导
 + (BOOL)isLeader{
-    // 先判断是否是 专家还是顾问
-    if (![[HelperManager CreateInstance].position_id isEqualToString:@"4"] && ![[HelperManager CreateInstance].position_id isEqualToString:@"20"]) {
-        // 在判断是否是 总经理以上的领导层
-        NSInteger positionID = [[HelperManager CreateInstance].position_id integerValue];
-        if (positionID <= 3) {
-            return YES;
-        }
-        else{
-            return NO;
-        }
-    }else{
+    
+    // 在判断是否是 总经理以上的领导层
+    NSInteger positionID = [[HelperManager CreateInstance].level_id integerValue];
+    if (positionID <= 3 && positionID > 0) {
+        return YES;
+    }
+    else{
         return NO;
     }
 }

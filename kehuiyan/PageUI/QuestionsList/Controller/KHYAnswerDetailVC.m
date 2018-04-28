@@ -159,7 +159,7 @@ static NSString *const currentTitle = @"回答提问";
                                [MBProgressHUD showMessage:@"回复成功" toView:self.view];
                                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.75 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                                    NSArray *array = self.navigationController.viewControllers;
-                                   KHYQuestionListViewController *first = [array objectAtIndex:1];
+                                   KHYQuestionListViewController *first = [array objectAtIndex:array.count - 2];
                                    [self.navigationController popToViewController:first animated:YES];
                                });
                            }

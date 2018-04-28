@@ -121,8 +121,14 @@ static NSString *const cellIdentifier = @"KHYOrderCell1";
     param[@"app"] = @"ucenter";
     param[@"act"] = @"myOrderList";
     param[@"status"] = type;
-    if (![[HelperManager CreateInstance].position_id isEqualToString:@"4"] && ![[HelperManager CreateInstance].position_id isEqualToString:@"20"]) {
-        param[@"mem_id"] = self.mem_id;
+    if ([JXAppTool isLeader]) {
+        if (self.mem_id == nil) {
+            // 领导要看患者的订单信息
+            param[@"patient_id"] = self.patient_id;
+        }else{
+            param[@"mem_id"] = self.mem_id;
+        }
+        
     }
     [MBProgressHUD showSimple:self.view];
     [HttpRequestEx postWithURL:SERVICE_URL

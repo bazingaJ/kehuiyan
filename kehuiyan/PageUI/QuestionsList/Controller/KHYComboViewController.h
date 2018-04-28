@@ -7,10 +7,15 @@
 //
 
 #import "BaseTableViewController.h"
+#import "KHYComboModel.h"
+
+typedef void(^PackgeBlock)(KHYComboModel *);
 
 @interface KHYComboViewController : BaseTableViewController
 
 // 是否提问页面过来的 1.是 提问页面  2.否 咨询页面
 @property (nonatomic, strong) NSString *isAnswer;
+
+@property (nonatomic, copy) PackgeBlock choicePackge;
 
 @end

@@ -32,21 +32,19 @@ static NSString *const cellIdentifier = @"KHYQuestionListCell1";
     [super viewDidLoad];
     self.title = self.characterType == 1 ? currentTitle1 : currentTitle2;
     
-//    [self initialized];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     
     [super viewWillAppear:animated];
-    if ([[HelperManager CreateInstance].position_id isEqualToString:@"4"]) {
-        
-    }
-    else if ([[HelperManager CreateInstance].position_id isEqualToString:@"20"])
-    {
+    
+    if (self.characterType == 1){
         [self requestQuestionData];
+    }else if (self.characterType == 2){
+        [self requestConsultData];
     }
+    
     
 }
 
@@ -57,7 +55,7 @@ static NSString *const cellIdentifier = @"KHYQuestionListCell1";
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"app"] = @"home";
     param[@"act"] = @"getQuestionList";
-    if (![[HelperManager CreateInstance].position_id isEqualToString:@"4"] && ![[HelperManager CreateInstance].position_id isEqualToString:@"20"]) {
+    if ([JXAppTool isLeader]) {
         param[@"mem_id"] = self.memberID;
     }
     [MBProgressHUD showSimple:self.view];
@@ -72,6 +70,7 @@ static NSString *const cellIdentifier = @"KHYQuestionListCell1";
                                NSDictionary *dict = [json objectForKey:@"data"];
                                self.dataArr = [KHYQuestionListModel mj_objectArrayWithKeyValuesArray:dict[@"list"]];
                                [self.tableView reloadData];
+                               [self.tableView emptyViewShowWithDataType:EmptyViewTypeData isEmpty:self.dataArr.count <= 0 emptyViewClickBlock:nil];
                            }
                            else
                            {
@@ -84,12 +83,16 @@ static NSString *const cellIdentifier = @"KHYQuestionListCell1";
                        }];
 }
 
+// 获取咨询列表
 - (void)requestConsultData
 {
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"app"] = @"home";
     param[@"act"] = @"getChatList";
+    if ([JXAppTool isLeader]) {
+        param[@"mem_id"] = self.memberID;
+    }
     [MBProgressHUD showSimple:self.view];
     [HttpRequestEx postWithURL:SERVICE_URL
                         params:param
@@ -102,6 +105,7 @@ static NSString *const cellIdentifier = @"KHYQuestionListCell1";
                                NSDictionary *dict = [json objectForKey:@"data"];
                                self.dataArr = [KHYChatModel mj_objectArrayWithKeyValuesArray:dict[@"list"]];
                                [self.tableView reloadData];
+                               [self.tableView emptyViewShowWithDataType:EmptyViewTypeData isEmpty:self.dataArr.count <= 0 emptyViewClickBlock:nil];
                            }
                            else
                            {
@@ -115,11 +119,6 @@ static NSString *const cellIdentifier = @"KHYQuestionListCell1";
     
 }
 
-- (void)initialized
-{
-    
-    
-}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -135,10 +134,10 @@ static NSString *const cellIdentifier = @"KHYQuestionListCell1";
     {
         cell = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([KHYQuestionListCell class]) owner:nil options:nil]objectAtIndex:0];
     }
-    if ([[HelperManager CreateInstance].position_id isEqualToString:@"4"]) {
-        cell.chatModel = self.dataArr[indexPath.row];
-    }else if ([[HelperManager CreateInstance].position_id isEqualToString:@"20"]){
+    if (self.characterType == 1){
         cell.model = self.dataArr[indexPath.row];
+    }else if (self.characterType == 2){
+        cell.chatModel = self.dataArr[indexPath.row];
     }
     
     return cell;
@@ -167,15 +166,22 @@ static NSString *const cellIdentifier = @"KHYQuestionListCell1";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if ([[HelperManager CreateInstance].position_id isEqualToString:@"4"]){
-        KHYChatViewController *vc = [[KHYChatViewController alloc] init];
-        vc.title = @"咨询详情";
-        [self.navigationController pushViewController:vc animated:YES];
-    }else if ([[HelperManager CreateInstance].position_id isEqualToString:@"20"]){
+    if (self.characterType== 1) {
         KHYAskRecordViewController *vc = [[KHYAskRecordViewController alloc] init];
         vc.title = @"提问详情";
         vc.model = self.dataArr[indexPath.row];
         vc.isPatient = @"2";
+        vc.memberID = self.memberID;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        KHYChatViewController *vc = [[KHYChatViewController alloc] init];
+        vc.title = @"咨询详情";
+        vc.isFromInfo = self.isFromInfo;
+        vc.model = self.dataArr[indexPath.row];
+        if ([JXAppTool isLeader]) {
+            vc.memberID = self.memberID;
+        }
+        
         [self.navigationController pushViewController:vc animated:YES];
     }
 

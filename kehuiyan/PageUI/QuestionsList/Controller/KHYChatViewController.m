@@ -7,27 +7,33 @@
 //
 
 #import "KHYChatViewController.h"
-#import "UUInputFunctionView.h"
-#import "UUMessageCell.h"
-#import "ChatModel.h"
-#import "UUMessageFrame.h"
-#import "UUMessage.h"
-#import <MJRefresh/MJRefresh.h>
-#import "UUChatCategory.h"
+#import "WSChatMessageInputBar.h"
+#import "ODRefreshControl.h"
+#import "KHYChatCell.h"
+#import "ALView+PureLayout.h"
+#import "KHYChatInfoModel.h"
+#import "KHYPackgeCell.h"
+#import "KHYComboViewController.h"
 
-@interface KHYChatViewController ()<UUInputFunctionViewDelegate,
-                                    UUMessageCellDelegate,
+// 他人信息
+static NSString *const cellIdentifier = @"ChatTableCell1";
+// 自己信息
+static NSString *const cellIdentifier1 = @"ChatTableCell2";
+
+@interface KHYChatViewController ()<JXChatInputBarDelegate,
                                     UITableViewDataSource,
                                     UITableViewDelegate>
 {
-    CGFloat _keyboardHeight;
+    dispatch_source_t timer;
 }
+@property(nonatomic,strong)WSChatMessageInputBar *inputBar;
 
-@property (strong, nonatomic) ChatModel *chatModel;
+@property (nonatomic, strong) NSMutableArray *dataArr;
 
-@property (strong, nonatomic) UITableView *chatTableView;
+@property (nonatomic, strong) ODRefreshControl *refreshControl;
 
-@property (strong, nonatomic) UUInputFunctionView *inputFuncView;
+// 计算高度的字典
+@property (nonatomic, strong) NSMutableDictionary *heightsDicM;
 
 @end
 
@@ -37,216 +43,338 @@ const CGFloat ChatViewInputViewHeight = 50.f;
 
 @implementation KHYChatViewController
 
+- (NSMutableDictionary*)heightsDicM
+{
+    if(_heightsDicM==nil)
+    {
+        _heightsDicM = [NSMutableDictionary dictionary];
+    }
+    return _heightsDicM;
+}
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    [self initBasicViews];
-    [self addRefreshViews];
-    [self loadBaseViewsAndData];
-    _chatTableView.frame = CGRectMake(0, 0, self.view.uu_width, self.view.uu_height-ChatViewInputViewHeight);
-    _inputFuncView.frame = CGRectMake(0, _chatTableView.uu_bottom, self.view.uu_width, ChatViewInputViewHeight);
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
+    self.title = currentTitle;
     
-    //add notification
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardChange:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardChange:) name:UIKeyboardWillHideNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(adjustCollectionViewLayout) name:UIDeviceOrientationDidChangeNotification object:nil];
-    [self tableViewScrollToBottom];
+    UIEdgeInsets inset = UIEdgeInsetsMake(0, 0, 0, 0);
+    [self.view addSubview:self.tableView];
+    
+    
+    
+    if (!self.memberID && [self.isFromInfo isEqualToString:@"2"]) {
+        [self.tableView autoPinEdgesToSuperviewEdgesWithInsets:inset excludingEdge:ALEdgeBottom];
+        [self.view addSubview:self.inputBar];
+        [self.inputBar autoPinEdgesToSuperviewEdgesWithInsets:inset excludingEdge:ALEdgeTop];
+        [self.inputBar autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.tableView];
+    }else{
+        self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAVIGATION_BAR_HEIGHT - HOME_INDICATOR_HEIGHT);
+        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            [self loadMoreMsg];
+        }];
+    }
+
+    self.dataArr = [NSMutableArray array];
+    [self requestChatData];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    [IQKeyboardManager sharedManager].enable = NO;
+    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
+    
+    if (!self.memberID && [self.isFromInfo isEqualToString:@"2"]) {
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+        dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 15 * NSEC_PER_SEC, 0.1 * NSEC_PER_SEC);
+        dispatch_source_set_event_handler(timer, ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self requestChatData];
+            });
+            
+        });
+        dispatch_resume(timer);
+    }
+    
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    
     [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].enableAutoToolbar = YES;
+    if (timer) {
+        dispatch_source_cancel(timer);
+        timer = nil;
+    }
+    
 }
 
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
+#pragma mark - TableView Delegate
+
+-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (_inputFuncView.inputView.isFirstResponder) {
-        _chatTableView.frame = CGRectMake(0, 0, self.view.uu_width, self.view.uu_height-ChatViewInputViewHeight-_keyboardHeight);
-        _inputFuncView.frame = CGRectMake(0, _chatTableView.uu_bottom, self.view.uu_width, ChatViewInputViewHeight);
-    } else {
-        _chatTableView.frame = CGRectMake(0, 0, self.view.uu_width, self.view.uu_height-ChatViewInputViewHeight);
-        _inputFuncView.frame = CGRectMake(0, _chatTableView.uu_bottom, self.view.uu_width, ChatViewInputViewHeight);
+    return [self tableView:tableView heightForRowAtIndexPath:indexPath];
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    KHYChatInfoModel *model = self.dataArr[indexPath.row];
+    if ([model.content_type isEqualToString:@"1"]) {
+        return [self.heightsDicM[indexPath] doubleValue];
+    }else{
+        return 140;
     }
 }
 
-#pragma mark - prive methods
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
+    return 1;
+}
 
-- (void)initBasicViews
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    return self.dataArr.count;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    KHYChatInfoModel *model = self.dataArr[indexPath.row];
+    if ([model.content_type isEqualToString:@"1"]) {
+        if ([model.is_mine isEqualToString:@"1"]) {
+            KHYChatCell *cell = [KHYChatCell cellWithTableView:tableView cellIdentifier:@"TextCellCell2"];
+            cell.model = model;
+            self.heightsDicM[indexPath] = @([cell getH1]);
+            return cell;
+            
+        }else{
+            KHYChatCell *cell = [KHYChatCell cellWithTableView:tableView cellIdentifier:@"TextCellCell1"];
+            cell.model = model;
+            self.heightsDicM[indexPath] = @([cell getH1]);
+            return cell;
+        }
+    }else{
+        KHYPackgeCell *cell = [KHYPackgeCell cellWithTableView:tableView];
+        cell.model = model;
+        self.heightsDicM[indexPath] = @(140);
+        return cell;
+    }
+    
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self.view endEditing:YES];
     
-    self.title = currentTitle;
-    _chatTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.uu_width, self.view.uu_height-ChatViewInputViewHeight) style:UITableViewStylePlain];
-    _chatTableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    _chatTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _chatTableView.delegate = self;
-    _chatTableView.dataSource = self;
-    _chatTableView.backgroundColor = kRGB(240, 240, 240);
-    [self.view addSubview:_chatTableView];
-    
-    [_chatTableView registerClass:[UUMessageCell class] forCellReuseIdentifier:NSStringFromClass([UUMessageCell class])];
-    
-    _inputFuncView = [[UUInputFunctionView alloc] initWithFrame:CGRectMake(0, _chatTableView.uu_bottom, SCREEN_WIDTH, ChatViewInputViewHeight)];
-//    _inputFuncView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-    _inputFuncView.delegate = self;
-    [self.view addSubview:_inputFuncView];
+}
+
+// 发送按钮点击事件
+- (void)getMsgWith:(KHYChatInfoModel *)model
+{
+    [self sendMsgToServerWithContent:model.content contentType:@"1" completeBlock:^(BOOL isSuccess) {
+        if (isSuccess) {
+            [self.dataArr addObject:model];
+            [self.tableView reloadData];
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.dataArr.count - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+        }else{
+            [MBProgressHUD showError:@"消息发送失败" toView:self.view];
+        }
+    }];
     
 }
 
 /**
- 添加下拉加载之前更多消息的事件
+ 更多按钮点击事件
  */
-- (void)addRefreshViews
+- (void)choicePackge
 {
-    __weak typeof(self) weakSelf = self;
     
-    //load more
-    int pageNum = 5;
-    
-    self.chatTableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+    KHYComboViewController *vc = [[KHYComboViewController alloc] init];
+    vc.isAnswer = @"2";
+    vc.choicePackge = ^(KHYComboModel *model) {
+        KHYChatInfoModel *chatInfoModel = [KHYChatInfoModel new];
+        chatInfoModel.content_type = @"3";
+        chatInfoModel.packageID = model.package_num;
+        chatInfoModel.packageText = model.name;
+        chatInfoModel.chatCellType = JXChatCellType_Pacage;
+        chatInfoModel.content = model.package_num;
+        chatInfoModel.is_mine = @"1";
         
-        [weakSelf.chatModel addRandomItemsToDataSource:pageNum];
-        
-        if (weakSelf.chatModel.dataSource.count > pageNum) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:pageNum inSection:0];
+        NSString *detail = @"";
+        for (int i =0; i <model.product_list.count; i++)
+        {
+            NSDictionary *dict = model.product_list[i];
+            NSString *name = [NSString stringWithFormat:@"%@\n",dict[@"name"]];
+            detail = [detail stringByAppendingString:name];
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [weakSelf.chatTableView reloadData];
-                [weakSelf.chatTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
-            });
         }
-        [weakSelf.chatTableView.mj_header endRefreshing];
-    }];
-}
-
-- (void)loadBaseViewsAndData
-{
-    self.chatModel = [[ChatModel alloc] init];
-    self.chatModel.isGroupChat = NO;
-    [self.chatModel populateRandomDataSource];
+        chatInfoModel.packgeInfo = detail;
+        chatInfoModel.packageImg = model.cover_url;
+        
+        [self sendMsgToServerWithContent:model.package_num contentType:@"3" completeBlock:^(BOOL isSuccess) {
+            if (isSuccess) {
+                [self.dataArr addObject:chatInfoModel];
+                [self.tableView reloadData];
+                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.dataArr.count - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+            }else{
+                [MBProgressHUD showError:@"消息发送失败" toView:self.view];
+            }
+        }];
+        
+    };
     
-    [self.chatTableView reloadData];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
-#pragma mark - notification event
-
-//tableView Scroll to bottom
-- (void)tableViewScrollToBottom
+/**
+ 请求聊天信息
+ */
+- (void)requestChatData
 {
-    if (self.chatModel.dataSource.count==0) { return; }
     
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.chatModel.dataSource.count-1 inSection:0];
-    [self.chatTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-}
-
--(void)keyboardChange:(NSNotification *)notification
-{
-    NSDictionary *userInfo = [notification userInfo];
-    NSTimeInterval animationDuration;
-    UIViewAnimationCurve animationCurve;
-    CGRect keyboardEndFrame;
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"app"] = @"home";
+    param[@"act"] = @"getChatInfo";
+    param[@"other_user_id"] = _model.user_id;
+    if ([JXAppTool isLeader]) {
+        param[@"mem_id"] = self.memberID;
+    }
     
-    [[userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
-    [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
-    [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardEndFrame];
+    [HttpRequestEx postWithURL:SERVICE_URL
+                        params:param
+                       success:^(id json) {
+                           
+                           NSString *code = [json objectForKey:@"code"];
+                           NSString *msg  = [json objectForKey:@"msg"];
+                           if ([code isEqualToString:SUCCESS])
+                           {
+                               NSDictionary *dict = [json objectForKey:@"data"];
+                               self.dataArr = [KHYChatInfoModel mj_objectArrayWithKeyValuesArray:dict[@"list"]];
+                               [self.tableView reloadData];
+                               if (self.dataArr.count > 0) {
+                                   [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.dataArr.count - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+                               }
+                           }
+                           else
+                           {
+                               [MBProgressHUD showError:msg toView:self.view];
+                           }
+                       }
+                       failure:^(NSError *error) {
+                           
+                           [MBProgressHUD showError:@"与服务器连接失败" toView:self.view];
+                       }];
     
-    _keyboardHeight = keyboardEndFrame.size.height;
     
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:animationDuration];
-    [UIView setAnimationCurve:animationCurve];
+}
+
+/**
+ 发送咨询回复
+
+ @param content 咨询的内容
+ @param block 回调是否成功
+ */
+- (void)sendMsgToServerWithContent:(NSString *)content contentType:(NSString *)type completeBlock:(void(^)(BOOL isSuccess))block
+{
     
-    self.chatTableView.uu_height = self.view.uu_height - ChatViewInputViewHeight;
-    self.chatTableView.uu_height -= notification.name == UIKeyboardWillShowNotification ? _keyboardHeight:0;
-    self.chatTableView.contentOffset = CGPointMake(0, self.chatTableView.contentSize.height-self.chatTableView.uu_height);
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"app"] = @"home";
+    param[@"act"] = @"sendChat";
+    param[@"content"] = content;
+    param[@"other_user_id"] = self.model.user_id;
+    param[@"content_type"] = type;
+    [HttpRequestEx postWithURL:SERVICE_URL
+                        params:param
+                       success:^(id json) {
+                           NSString *code = [json objectForKey:@"code"];
+                           if ([code isEqualToString:SUCCESS])
+                           {
+                               block(YES);
+                           }
+                           else
+                           {
+                               block(NO);
+                           }
+                       }
+                       failure:^(NSError *error) {
+                           block(NO);
+                       }];
     
-    self.inputFuncView.uu_top = self.chatTableView.uu_bottom;
+}
+
+#pragma mark - Getter Method
+
+-(UITableView *)tableView
+{
+    if (!_tableView)
+    {
+        _tableView                      =   [[UITableView alloc]initWithFrame:self.view.bounds];
+        _tableView.separatorStyle       =   UITableViewCellSeparatorStyleNone;
+        _tableView.backgroundColor      =   BACK_COLOR;
+        _tableView.delegate             =   self;
+        _tableView.dataSource           =   self;
+        _tableView.keyboardDismissMode  =   UIScrollViewKeyboardDismissModeOnDrag;
+        
+    }
     
-    [UIView commitAnimations];
+    return _tableView;
+    
 }
 
-- (void)adjustCollectionViewLayout
-{
-    [self.chatModel recountFrame];
-    [self.chatTableView reloadData];
+- (void)loadMoreMsg{
+    
+    KHYChatInfoModel *model = self.dataArr[0];
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"app"] = @"home";
+    param[@"act"] = @"getChatInfo";
+    param[@"msg_id"] = model.msg_id;
+    param[@"chat_id"] = model.chat_id;
+    param[@"other_user_id"] = _model.user_id;
+    if ([JXAppTool isLeader]) {
+        param[@"mem_id"] = self.memberID;
+    }
+    
+    [HttpRequestEx postWithURL:SERVICE_URL
+                        params:param
+                       success:^(id json) {
+                           [self.tableView.mj_header endRefreshing];
+                           NSString *code = [json objectForKey:@"code"];
+                           NSString *msg  = [json objectForKey:@"msg"];
+                           if ([code isEqualToString:SUCCESS])
+                           {
+                               NSDictionary *dict = [json objectForKey:@"data"];
+                               NSMutableArray *Arr = [NSMutableArray array];
+                               Arr = [KHYChatInfoModel mj_objectArrayWithKeyValuesArray:dict[@"list"]];
+                               NSArray *wholeArr = [Arr arrayByAddingObjectsFromArray:(NSArray *)self.dataArr];
+                               [self.dataArr removeAllObjects];
+                               [self.dataArr addObjectsFromArray:wholeArr];
+                               [self.tableView reloadData];
+                           }
+                           else
+                           {
+                               [MBProgressHUD showError:msg toView:self.view];
+                           }
+                       }
+                       failure:^(NSError *error) {
+                           [self.tableView.mj_header endRefreshing];
+                           [MBProgressHUD showError:@"与服务器连接失败" toView:self.view];
+                       }];
 }
 
-#pragma mark - InputFunctionViewDelegate
-
-- (void)UUInputFunctionView:(UUInputFunctionView *)funcView sendMessage:(NSString *)message
+-(WSChatMessageInputBar *)inputBar
 {
-    NSDictionary *dic = @{@"strContent": message,
-                          @"type": @(UUMessageTypeText)};
-    funcView.inputView.text = @"";
-    [funcView changeSendBtnWithPhoto:YES];
-    [self dealTheFunctionData:dic];
-}
-
-- (void)UUInputFunctionView:(UUInputFunctionView *)funcView sendPicture:(UIImage *)image
-{
-    NSDictionary *dic = @{@"picture": image,
-                          @"type": @(UUMessageTypePicture)};
-    [self dealTheFunctionData:dic];
-}
-
-- (void)UUInputFunctionView:(UUInputFunctionView *)funcView sendVoice:(NSData *)voice time:(NSInteger)second
-{
-    NSDictionary *dic = @{@"voice": voice,
-                          @"strVoiceTime": [NSString stringWithFormat:@"%d",(int)second],
-                          @"type": @(UUMessageTypeVoice)};
-    [self dealTheFunctionData:dic];
-}
-
-- (void)dealTheFunctionData:(NSDictionary *)dic
-{
-    [self.chatModel addSpecifiedItem:dic];
-    [self.chatTableView reloadData];
-    [self tableViewScrollToBottom];
-}
-
-#pragma mark - tableView delegate & datasource
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return self.chatModel.dataSource.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UUMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UUMessageCell class])];
-    cell.delegate = self;
-    cell.messageFrame = self.chatModel.dataSource[indexPath.row];
-    return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return [self.chatModel.dataSource[indexPath.row] cellHeight];
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self.view endEditing:YES];
-}
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-    [self.view endEditing:YES];
-}
-
-#pragma mark - UUMessageCellDelegate
-
-- (void)chatCell:(UUMessageCell *)cell headImageDidClick:(NSString *)userId
-{
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:cell.messageFrame.message.strName message:@"headImage clicked" delegate:nil cancelButtonTitle:@"sure" otherButtonTitles:nil];
-    [alert show];
+    if (_inputBar) {
+        return _inputBar;
+    }
+    
+    _inputBar = [[WSChatMessageInputBar alloc]init];
+    _inputBar.delegate = self;
+    _inputBar.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    return _inputBar;
 }
 
 - (void)didReceiveMemoryWarning {

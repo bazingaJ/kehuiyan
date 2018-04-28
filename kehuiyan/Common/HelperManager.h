@@ -64,19 +64,25 @@
  */
 @property (nonatomic, strong) NSString *position_id;
 
+/**
+ *  级别ID
+ */
+@property (nonatomic, strong) NSString *level_id;
 
 /**
- *  BTC总数
+ *  级别名称
  */
-@property (nonatomic, strong) NSString *btcNum;
+@property (nonatomic, strong) NSString *level_name;
+
 /**
- *  ETH总数
+ *  类别 1.普通 2.专家 3.营养师
  */
-@property (nonatomic, strong) NSString *ethNum;
+@property (nonatomic, strong) NSString *type;
+
 /**
- *  BCH总数
+ *  是否可以发布活动
  */
-@property (nonatomic, strong) NSString *bchNum;
+@property (nonatomic, strong) NSString *is_send_activity;
 /**
  *  清除账号
  */

@@ -10,4 +10,26 @@
 
 @interface KHYOrderDetailCell : UITableViewCell
 
+@property (nonatomic, strong) NSArray *productArr;
+
+// No.1
+@property (nonatomic, weak) IBOutlet UILabel *titleLab1;
+@property (weak, nonatomic) IBOutlet UILabel *code;
+@property (weak, nonatomic) IBOutlet UILabel *single_price;
+@property (weak, nonatomic) IBOutlet UILabel *numberLab;
+
+// No.2
+@property (weak, nonatomic) IBOutlet UILabel *titleLab2;
+@property (weak, nonatomic) IBOutlet UILabel *codeLab2;
+@property (weak, nonatomic) IBOutlet UILabel *single_priceLab2;
+@property (weak, nonatomic) IBOutlet UILabel *numberLab2;
+
+// No.3
+@property (weak, nonatomic) IBOutlet UILabel *titleLab3;
+@property (weak, nonatomic) IBOutlet UILabel *codeLab3;
+@property (weak, nonatomic) IBOutlet UILabel *single_priceLab3;
+@property (weak, nonatomic) IBOutlet UILabel *numberLab3;
+
+
+
 @end

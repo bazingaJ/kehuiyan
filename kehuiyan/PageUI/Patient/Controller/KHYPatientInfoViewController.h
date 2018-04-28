@@ -10,4 +10,7 @@
 
 @interface KHYPatientInfoViewController : BaseTableViewController
 @property (nonatomic, strong) NSString *patient_id;
+
+@property (nonatomic, strong) NSString *memberID;
+
 @end

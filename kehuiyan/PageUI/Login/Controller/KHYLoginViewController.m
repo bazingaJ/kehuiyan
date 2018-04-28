@@ -22,13 +22,11 @@
 @implementation KHYLoginViewController
 
 - (void)viewDidLoad {
+    
     [self setLeftButtonItemHidden:YES];
     [self setHiddenHeaderRefresh:YES];
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
     self.title = @"登录";
-    
     self.tableView.backgroundColor = [UIColor whiteColor];
     
     //设置数据源

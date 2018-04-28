@@ -91,7 +91,16 @@ static NSString *const cellIdentifier2 = @"KHYOrderDetailCell2";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.section == 2 && indexPath.row == 2) return 90;
+    if (indexPath.section == 2 && indexPath.row == 2){
+        if (_model.product_list.count == 1) {
+            return 50;
+        }else if (_model.product_list.count == 2){
+            return 70;
+        }else {
+            return 90;
+        }
+    }
+    
     return 45.f;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -102,6 +111,10 @@ static NSString *const cellIdentifier2 = @"KHYOrderDetailCell2";
         if (!cell1)
         {
             cell1 = [[[NSBundle mainBundle]loadNibNamed:NSStringFromClass([KHYOrderDetailCell class]) owner:nil options:nil]objectAtIndex:0];
+            
+        }
+        if (_model.product_list.count > 0) {
+            cell1.productArr = _model.product_list;
         }
         
         return cell1;

@@ -12,4 +12,9 @@
 
 @property (nonatomic, strong) NSString *member_id;
 
+/**
+ 是否允许显示发布活动按钮
+ */
+@property (nonatomic, strong) NSString *isShowBtn;
+
 @end

@@ -28,6 +28,7 @@
 #import "KHYActivityViewController.h"
 #import "KHYOrderViewController.h"
 #import "KHYFilterListViewController.h"
+#import "KHYChatViewController.h"
 
 @interface KHYHomeViewController ()<KHYHomeMenuViewDelegate> {
     NSMutableDictionary *titleDic;
@@ -83,7 +84,8 @@
     titleDic = [NSMutableDictionary dictionary];
     
     //代办事项
-    [titleDic setValue:@[@"任务代办",@"咨询回复"] forKey:@"1"];
+    [titleDic setValue:@[@"任务代办"] forKey:@"1"];
+//    [titleDic setValue:@[@"任务代办",@"咨询回复"] forKey:@"1"];
     
     //当日统计
     [titleDic setValue:@[@"拜访客户数",@"新增用户数",@"销量"] forKey:@"2"];
@@ -128,44 +130,55 @@
             }
             case 1: {
                 
-                NSInteger positionID = [[HelperManager CreateInstance].position_id integerValue];
-                if (positionID <= 3)
-                {
+                // 是不是领导
+                if ([JXAppTool isLeader]) {
                     KHYFilterListViewController *vc = [[KHYFilterListViewController alloc] init];
                     vc.filterType = @"4";
                     [self.navigationController pushViewController:vc animated:YES];
-                }
-                else if (positionID == 4 || positionID == 20)
-                {
-                    //销售管理
-                    KHYOrderViewController *vc = [[KHYOrderViewController alloc] init];
-                    vc.selectIndex = 0;
-                    vc.title = @"直销订单管理";
-                    vc.menuViewStyle = WMMenuViewStyleLine;
-                    vc.automaticallyCalculatesItemWidths = YES;
-                    vc.progressViewIsNaughty = YES;
-                    vc.progressWidth = SCREEN_WIDTH / 4;
-                    vc.titleSizeSelected = 18;
-                    vc.titleColorSelected = kRGB(89, 189, 237);
-                    [self.navigationController pushViewController:vc animated:YES];
-                }
-                else{
-                    [MBProgressHUD showMessage:@"暂无权限" toView:self.view];
-                    return;
+                }else{
+                    //不是领导是不是特殊岗位
+                    if ([[HelperManager CreateInstance].type isEqualToString:@"2"]) {
+                        // 专家
+                        KHYOrderViewController *vc = [[KHYOrderViewController alloc] init];
+                        vc.selectIndex = 0;
+                        vc.title = @"直销订单管理";
+                        vc.menuViewStyle = WMMenuViewStyleLine;
+                        vc.automaticallyCalculatesItemWidths = YES;
+                        vc.progressViewIsNaughty = YES;
+                        vc.progressWidth = SCREEN_WIDTH / 4;
+                        vc.titleSizeSelected = 18;
+                        vc.titleColorSelected = kRGB(89, 189, 237);
+                        [self.navigationController pushViewController:vc animated:YES];
+                    }else if ([[HelperManager CreateInstance].type isEqualToString:@"3"]){
+                        // 营养师
+                        KHYOrderViewController *vc = [[KHYOrderViewController alloc] init];
+                        vc.selectIndex = 0;
+                        vc.title = @"直销订单管理";
+                        vc.menuViewStyle = WMMenuViewStyleLine;
+                        vc.automaticallyCalculatesItemWidths = YES;
+                        vc.progressViewIsNaughty = YES;
+                        vc.progressWidth = SCREEN_WIDTH / 4;
+                        vc.titleSizeSelected = 18;
+                        vc.titleColorSelected = kRGB(89, 189, 237);
+                        [self.navigationController pushViewController:vc animated:YES];
+                    }else{
+                        // 其他职位
+                        [MBProgressHUD showMessage:@"暂无权限" toView:self.view];
+                        return;
+                    }
+                    
                 }
                 
                 break;
             }
             case 2: {
-                NSInteger positionID = [[HelperManager CreateInstance].position_id integerValue];
-                if (positionID <= 3)
-                {
+                
+                // 是不是领导
+                if ([JXAppTool isLeader]) {
                     KHYFilterListViewController *vc = [[KHYFilterListViewController alloc] init];
                     vc.filterType = @"3";
                     [self.navigationController pushViewController:vc animated:YES];
-                }
-                else if (positionID == 4)
-                {
+                }else{
                     //患教活动
                     KHYActivityViewController *activityVC = [KHYActivityViewController new];
                     activityVC.selectIndex = 0;
@@ -177,31 +190,33 @@
                     activityVC.titleSizeSelected = 18;
                     activityVC.titleColorSelected = MAIN_COLOR;
                     [self.navigationController pushViewController:activityVC animated:YES];
-                }
-                else{
-                    [MBProgressHUD showMessage:@"暂无权限" toView:self.view];
-                    return;
+                    
                 }
                 break;
             }
             case 3: {
                 
-                NSInteger positionID = [[HelperManager CreateInstance].position_id integerValue];
-                if (positionID <= 3)
-                {
+                // 是不是领导
+                if ([JXAppTool isLeader]) {
                     KHYFilterListViewController *vc = [[KHYFilterListViewController alloc] init];
                     vc.filterType = @"5";
                     [self.navigationController pushViewController:vc animated:YES];
-                }
-                else if (positionID == 4 || positionID == 20)
-                {
-                    //患者管理
-                    KHYPatientManageViewController *vc = [[KHYPatientManageViewController alloc] init];
-                    [self.navigationController pushViewController:vc animated:YES];
-                }
-                else{
-                    [MBProgressHUD showMessage:@"暂无权限" toView:self.view];
-                    return;
+                }else{
+                    //不是领导是不是特殊岗位
+                    if ([[HelperManager CreateInstance].type isEqualToString:@"2"]) {
+                        // 专家
+                        KHYPatientManageViewController *vc = [[KHYPatientManageViewController alloc] init];
+                        [self.navigationController pushViewController:vc animated:YES];
+                    }else if ([[HelperManager CreateInstance].type isEqualToString:@"3"]){
+                        // 营养师
+                        KHYPatientManageViewController *vc = [[KHYPatientManageViewController alloc] init];
+                        [self.navigationController pushViewController:vc animated:YES];
+                    }else{
+                        // 其他职位
+                        [MBProgressHUD showMessage:@"暂无权限" toView:self.view];
+                        return;
+                    }
+                    
                 }
                 
                 break;
@@ -418,7 +433,7 @@
                     }
                     case 2: {
                         //销量
-                        [lbMsg2 setText:@"14"];
+                        [lbMsg2 setText:titleDic[@"info"][4]];
                         
                         break;
                     }
@@ -435,9 +450,9 @@
         }
         
         //创建“右侧尖头”
-        UIImageView *imgView2 = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-20, 17.5, 5.5, 10)];
-        [imgView2 setImage:[UIImage imageNamed:@"right_icon_gray"]];
-        [cell.contentView addSubview:imgView2];
+//        UIImageView *imgView2 = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-20, 17.5, 5.5, 10)];
+//        [imgView2 setImage:[UIImage imageNamed:@"right_icon_gray"]];
+//        [cell.contentView addSubview:imgView2];
         
         //创建“分割线”
         if(indexPath.row<[titleArr count]-1) {
@@ -473,45 +488,44 @@
             break;
         }
         case 2: {
-            NSInteger positionID = [[HelperManager CreateInstance].position_id integerValue];
-            if (positionID == 20)
-            {
-                //专家提问
-                KHYQuestionListViewController *questionVC = [KHYQuestionListViewController new];
-                questionVC.characterType = 1;
-                [self.navigationController pushViewController:questionVC animated:YES];
-            }
-            else if (positionID == 4)
-            {
-                // 咨询记录
-                KHYQuestionListViewController *questionVC = [KHYQuestionListViewController new];
-                questionVC.characterType = 2;
-                [self.navigationController pushViewController:questionVC animated:YES];
-            }
-            else if (positionID <= 3)
-            {
+            // 是不是领导
+            if ([JXAppTool isLeader]) {
                 KHYFilterListViewController *vc = [[KHYFilterListViewController alloc] init];
                 vc.filterType = @"10";
                 [self.navigationController pushViewController:vc animated:YES];
+            }else{
+                //不是领导是不是特殊岗位
+                if ([[HelperManager CreateInstance].type isEqualToString:@"2"]) {
+                    // 专家
+                    KHYQuestionListViewController *questionVC = [KHYQuestionListViewController new];
+                    questionVC.characterType = 1;
+                    [self.navigationController pushViewController:questionVC animated:YES];
+                }else if ([[HelperManager CreateInstance].type isEqualToString:@"3"]){
+                    // 营养师
+                    KHYQuestionListViewController *questionVC = [KHYQuestionListViewController new];
+                    questionVC.characterType = 2;
+                    questionVC.isFromInfo = @"2";
+                    [self.navigationController pushViewController:questionVC animated:YES];
+                }else{
+                    // 其他职位
+                    [MBProgressHUD showMessage:@"暂无权限" toView:self.view];
+                    return;
+                }
+                
             }
-            else
-            {
-                [MBProgressHUD showMessage:@"暂无权限" toView:self.view];
-                return;
-            }
+            
             break;
         }
         case 3: {
-            NSInteger positionID = [[HelperManager CreateInstance].position_id integerValue];
-            if (positionID <= 3)
-            {
+            
+            // 是不是领导
+            if ([JXAppTool isLeader]) {
+                // 普通领导
                 KHYFilterListViewController *vc = [[KHYFilterListViewController alloc] init];
                 vc.filterType = @"3";
                 [self.navigationController pushViewController:vc animated:YES];
-            }
-            else if (positionID == 4)
-            {
-                //患教活动
+                
+            }else{
                 KHYActivityViewController *activityVC = [KHYActivityViewController new];
                 activityVC.selectIndex = 0;
                 activityVC.title = @"患教活动";
@@ -522,11 +536,9 @@
                 activityVC.titleSizeSelected = 18;
                 activityVC.titleColorSelected = MAIN_COLOR;
                 [self.navigationController pushViewController:activityVC animated:YES];
+                
             }
-            else{
-                [MBProgressHUD showMessage:@"暂无权限" toView:self.view];
-                return;
-            }
+            
             break;
         }
         case 4: {
@@ -559,7 +571,7 @@
         {
             NSDictionary *dataDic = [NSDictionary changeType:[json objectForKey:@"data"]];
             [titleDic removeObjectForKey:@"info"];
-            [titleDic setObject:@[[NSString getRightStringByCurrentString:dataDic[@"visit_count"]],[NSString getRightStringByCurrentString:dataDic[@"new_count"]],[NSString getRightStringByCurrentString:dataDic[@"wait_do_count"]],[NSString getRightStringByCurrentString:dataDic[@"zixun_cpunt"]]] forKey:@"info"];
+            [titleDic setObject:@[[NSString getRightStringByCurrentString:dataDic[@"visit_count"]],[NSString getRightStringByCurrentString:dataDic[@"new_count"]],[NSString getRightStringByCurrentString:dataDic[@"wait_do_count"]],[NSString getRightStringByCurrentString:dataDic[@"zixun_cpunt"]],[NSString getRightStringByCurrentString:dataDic[@"sale_count"]]] forKey:@"info"];
             [self.tableView reloadData];
         }
         else
@@ -571,18 +583,21 @@
     }];
 }
 
+
+
 - (void)getUserInfo
 {
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setValue:@"ucenter" forKey:@"app"];
     [param setValue:@"getMyInfo" forKey:@"act"];
-    [param setValue:[HelperManager CreateInstance].user_id forKey:@"user_id"];
+    
     [HttpRequestEx postWithURL:SERVICE_URL params:param success:^(id json) {
         NSString *msg = [json objectForKey:@"msg"];
         NSString *code = [json objectForKey:@"code"];
         if([code isEqualToString:SUCCESS]) {
             
             NSDictionary *dataDic = [json objectForKey:@"data"];
+            NSLog(@"====%@",dataDic);
             //预先清除
             [[HelperManager CreateInstance] clearAcc];
             

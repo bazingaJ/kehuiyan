@@ -22,6 +22,7 @@ static NSString *const cellIdentifier = @"KHYPatientCell1";
 @implementation KHYPatientManageViewController
 
 - (void)viewDidLoad {
+    
     [self setHiddenHeaderRefresh:YES];
     [super viewDidLoad];
     self.title = currentTitle;
@@ -29,13 +30,12 @@ static NSString *const cellIdentifier = @"KHYPatientCell1";
 }
 
 // 获取患者列表
-- (void)prepareForData
-{
+- (void)prepareForData{
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"app"] = @"home";
     param[@"act"] = @"getUserList";
-    if (![[HelperManager CreateInstance].position_id isEqualToString:@"4"] && ![[HelperManager CreateInstance].position_id isEqualToString:@"20"]) {
+    if ([JXAppTool isLeader]) {
         param[@"mem_id"] = self.member_id;
     }
     [MBProgressHUD showSimple:self.view];
@@ -62,18 +62,15 @@ static NSString *const cellIdentifier = @"KHYPatientCell1";
                            [MBProgressHUD showError:@"与服务器连接失败" toView:self.view];
                        }];
 }
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     return self.dataArr.count;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return 80.f;
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     KHYPatientCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell)
@@ -85,34 +82,30 @@ static NSString *const cellIdentifier = @"KHYPatientCell1";
     cell.nameLab.text = model.realname;
     return cell;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
     return 0.001f;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     
     return 0.001f;
 }
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     return nil;
 }
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     
     return nil;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     KHYPatientModel *model = self.dataArr[indexPath.row];
     KHYPatientInfoViewController *vc = [[KHYPatientInfoViewController alloc] init];
     vc.patient_id = model.user_id;
+    vc.memberID = self.member_id;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

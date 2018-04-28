@@ -14,4 +14,6 @@
 
 @property (nonatomic, strong) NSString *memberID;
 
+@property (nonatomic, strong) NSString *isShowBtn;
+
 @end

@@ -144,15 +144,31 @@ static NSString *const sickAnalyse = @"病情分析：";
         if ([self.isPatient isEqualToString:@"1"]) {
             return;
         }
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setTitle:@"回答" forState:UIControlStateNormal];
-        [btn setBackgroundColor:BLUE_COLOR];
-        [btn addTarget:self action:@selector(answerQuestion) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:btn];
-        [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.bottom.right.mas_equalTo(self.view);
-            make.height.mas_equalTo(45);
-        }];
+        // 是不是领导
+        if ([JXAppTool isLeader]) {
+            if ([self.memberID isEqualToString:[HelperManager CreateInstance].user_id]) {
+                UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+                [btn setTitle:@"回答" forState:UIControlStateNormal];
+                [btn setBackgroundColor:BLUE_COLOR];
+                [btn addTarget:self action:@selector(answerQuestion) forControlEvents:UIControlEventTouchUpInside];
+                [self.view addSubview:btn];
+                [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.bottom.right.mas_equalTo(self.view);
+                    make.height.mas_equalTo(45);
+                }];
+            }
+        }else{
+            UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+            [btn setTitle:@"回答" forState:UIControlStateNormal];
+            [btn setBackgroundColor:BLUE_COLOR];
+            [btn addTarget:self action:@selector(answerQuestion) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:btn];
+            [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.bottom.right.mas_equalTo(self.view);
+                make.height.mas_equalTo(45);
+            }];
+        }
+        
         return;
     }
     else if ([_model.status isEqualToString:@"2"]||[_model.status isEqualToString:@"3"])
@@ -222,6 +238,29 @@ static NSString *const sickAnalyse = @"病情分析：";
             make.right.mas_equalTo(answerView).offset(-12);
             make.height.mas_equalTo(20);
         }];
+        
+        // 药品信息视图
+//        UIView *drugView = [UIView new];
+//        drugView.backgroundColor = [UIColor whiteColor];
+//        [self.view addSubview:drugView];
+//        [drugView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.right.mas_equalTo(self.view);
+//            make.top.mas_equalTo(answerView.mas_bottom).mas_offset(10);
+//            make.height.mas_equalTo(100);
+//        }];
+//
+//        NSDictionary *data = _model.package_info;
+//        UIImageView *drupImg = [[UIImageView alloc] init];
+//        [drupImg sd_setImageWithURL:[NSURL URLWithString:data[@"cover_url"]] placeholderImage:[UIImage imageNamed:@"default_img_round_list"]];
+//        [drupImg mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.width.height.mas_equalTo(70);
+//            make.left.mas_equalTo(self.view.mas_left).mas_offset(15);
+//            make.centerY.mas_equalTo(self.view.mas_centerY);
+//        }];
+        
+        
+        
+        
     }
     
 }

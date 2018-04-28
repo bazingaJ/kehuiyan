@@ -11,6 +11,7 @@
 #import "KHYPatientInfoModel.h"
 #import "KHYChatViewController.h"
 #import "KHYOrderViewController.h"
+#import "KHYQuestionListViewController.h"
 
 static NSString *const currentTitle = @"患者资料";
 
@@ -38,9 +39,20 @@ static NSString *const cellIdentifier = @"PatientInfocell1";
                               @[@"邮箱",@""],
                               @[@"联系地址",@""],
                               @[@"",@""]]];
-    [self.dataArr addObject:@[@[@"咨询记录",@""],
-                              @[@"提问记录",@""],
-                              @[@"购买记录",@""]]];
+    
+    if ([[HelperManager CreateInstance].type isEqualToString:@"3"]) {
+        [self.dataArr addObject:@[@[@"咨询记录",@""],
+                                  @[@"购买记录",@""]]];
+    }else if ([[HelperManager CreateInstance].type isEqualToString:@"2"]){
+        [self.dataArr addObject:@[@[@"提问记录",@""],
+                                  @[@"购买记录",@""]]];
+    }else{
+        [self.dataArr addObject:@[@[@"咨询记录",@""],
+                                  @[@"提问记录",@""],
+                                  @[@"购买记录",@""]]];
+    }
+    
+    
 }
 - (void)prepareForData
 {
@@ -72,9 +84,17 @@ static NSString *const cellIdentifier = @"PatientInfocell1";
                                                          @[@"邮箱",[NSString getRightStringByCurrentString:_model.email]],
                                                          @[@"联系地址",[NSString getRightStringByCurrentString:_model.area_name]],
                                                          @[@"",[NSString getRightStringByCurrentString:_model.address]]]];
-                               [self.dataArr addObject:@[@[@"咨询记录",@""],
-                                                         @[@"提问记录",@""],
-                                                         @[@"购买记录",@""]]];
+                               if ([[HelperManager CreateInstance].type isEqualToString:@"3"]) {
+                                   [self.dataArr addObject:@[@[@"咨询记录",@""],
+                                                             @[@"购买记录",@""]]];
+                               }else if ([[HelperManager CreateInstance].type isEqualToString:@"2"]){
+                                   [self.dataArr addObject:@[@[@"提问记录",@""],
+                                                             @[@"购买记录",@""]]];
+                               }else{
+                                   [self.dataArr addObject:@[@[@"咨询记录",@""],
+                                                             @[@"提问记录",@""],
+                                                             @[@"购买记录",@""]]];
+                               }
                                
                                [self.tableView reloadData];
                            }
@@ -205,43 +225,82 @@ static NSString *const cellIdentifier = @"PatientInfocell1";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) return;
-    if (indexPath.row == 0)
-    {
-        // 咨询记录
-        KHYChatViewController *vc = [[KHYChatViewController alloc] init];
-        vc.title = @"咨询记录";
-        [self.navigationController pushViewController:vc animated:YES];
+    
+    if ([[HelperManager CreateInstance].type isEqualToString:@"3"]) {
+        
+        if (indexPath.row == 0){
+            [self jumpConsole];
+        }else if (indexPath.row == 1){
+            [self jumpBuy];
+        }
+    }else if ([[HelperManager CreateInstance].type isEqualToString:@"2"]){
+       
+        if (indexPath.row == 0){
+            [self jumpAsk];
+        }else if (indexPath.row == 1){
+            [self jumpBuy];
+        }
+    }else{
+        if (indexPath.row == 0){
+            [self jumpConsole];
+        }else if (indexPath.row == 1){
+            [self jumpAsk];
+        }else{
+            [self jumpBuy];
+        }
     }
-    else if (indexPath.row == 1)
-    {
-        // 提问记录
-        KHYAskListOutVC *AskVC = [KHYAskListOutVC new];
-        AskVC.patient_id = self.patient_id;
-        AskVC.selectIndex = 0;
-        AskVC.title = @"提问列表";
-        AskVC.menuViewStyle = WMMenuViewStyleLine;
-        AskVC.automaticallyCalculatesItemWidths = YES;
-        AskVC.progressViewIsNaughty = YES;
-        AskVC.progressWidth = 70;
-        AskVC.titleSizeSelected = 18;
-        AskVC.titleColorSelected = MAIN_COLOR;
-        [self.navigationController pushViewController:AskVC animated:YES];
-    }
-    else
-    {
-        //销售管理
-        KHYOrderViewController *vc = [[KHYOrderViewController alloc] init];
-        vc.selectIndex = 0;
-        vc.title = @"直销订单管理";
-        vc.menuViewStyle = WMMenuViewStyleLine;
-        vc.automaticallyCalculatesItemWidths = YES;
-        vc.progressViewIsNaughty = YES;
-        vc.progressWidth = SCREEN_WIDTH / 4;
-        vc.titleSizeSelected = 18;
-        vc.titleColorSelected = kRGB(89, 189, 237);
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+    
+    
 }
+
+// 咨询记录
+- (void)jumpConsole
+{
+    
+    // 咨询记录
+    KHYQuestionListViewController *vc = [[KHYQuestionListViewController alloc] init];
+    vc.memberID = self.memberID;
+    vc.characterType = 2;
+    vc.isFromInfo = @"1";
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+// 提问记录
+- (void)jumpAsk
+{
+    
+    // 提问记录
+    KHYAskListOutVC *AskVC = [KHYAskListOutVC new];
+    AskVC.patient_id = self.patient_id;
+    AskVC.selectIndex = 0;
+    AskVC.title = @"提问列表";
+    AskVC.menuViewStyle = WMMenuViewStyleLine;
+    AskVC.automaticallyCalculatesItemWidths = YES;
+    AskVC.progressViewIsNaughty = YES;
+    AskVC.progressWidth = 70;
+    AskVC.titleSizeSelected = 18;
+    AskVC.titleColorSelected = MAIN_COLOR;
+    [self.navigationController pushViewController:AskVC animated:YES];
+}
+
+// 购买记录
+- (void)jumpBuy
+{
+    
+    //销售管理
+    KHYOrderViewController *vc = [[KHYOrderViewController alloc] init];
+    vc.patient_id = self.patient_id;
+    vc.selectIndex = 0;
+    vc.title = @"直销订单管理";
+    vc.menuViewStyle = WMMenuViewStyleLine;
+    vc.automaticallyCalculatesItemWidths = YES;
+    vc.progressViewIsNaughty = YES;
+    vc.progressWidth = SCREEN_WIDTH / 4;
+    vc.titleSizeSelected = 18;
+    vc.titleColorSelected = kRGB(89, 189, 237);
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

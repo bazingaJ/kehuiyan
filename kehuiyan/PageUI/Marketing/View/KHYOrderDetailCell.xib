@@ -226,7 +226,21 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
-            <point key="canvasLocation" x="-15" y="-415"/>
+            <connections>
+                <outlet property="code" destination="5bg-gm-JN9" id="vP0-Zr-Ou3"/>
+                <outlet property="codeLab2" destination="U80-Cl-k9k" id="d99-zs-DyP"/>
+                <outlet property="codeLab3" destination="3oC-Gy-QRi" id="iCw-xm-4oR"/>
+                <outlet property="numberLab" destination="fWW-qg-EvS" id="L0I-dY-hnt"/>
+                <outlet property="numberLab2" destination="xGw-hC-ckU" id="EyQ-T4-BkV"/>
+                <outlet property="numberLab3" destination="QQF-Vh-3EZ" id="It8-ei-C5P"/>
+                <outlet property="single_price" destination="NxF-wn-y9B" id="48b-Fr-O9P"/>
+                <outlet property="single_priceLab2" destination="gAN-oM-xeZ" id="mX8-am-b42"/>
+                <outlet property="single_priceLab3" destination="hIy-tN-cMT" id="ayV-cm-57H"/>
+                <outlet property="titleLab1" destination="2Nj-i1-T72" id="sIe-ic-5ax"/>
+                <outlet property="titleLab2" destination="Zu9-lb-iI1" id="cep-Mt-ri0"/>
+                <outlet property="titleLab3" destination="MjV-IP-cbi" id="9VA-JS-1rz"/>
+            </connections>
+            <point key="canvasLocation" x="-15.5" y="-415"/>
         </tableViewCell>
     </objects>
 </document>

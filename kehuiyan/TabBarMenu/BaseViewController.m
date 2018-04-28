@@ -104,6 +104,10 @@
     [userInfo setValue:[userDic objectForKey:@"status"] forKey:@"status"];
     [userInfo setValue:[userDic objectForKey:@"position"] forKey:@"position"];
     [userInfo setValue:[userDic objectForKey:@"position_id"] forKey:@"position_id"];
+    [userInfo setValue:[userDic objectForKey:@"level_id"] forKey:@"level_id"];
+    [userInfo setValue:[userDic objectForKey:@"level_name"] forKey:@"level_name"];
+    [userInfo setValue:[userDic objectForKey:@"type"] forKey:@"type"];
+    [userInfo setValue:[userDic objectForKey:@"is_send_activity"] forKey:@"is_send_activity"];
     [userDefault setObject:userInfo forKey:@"userInfo"];
     [userDefault synchronize];
 }

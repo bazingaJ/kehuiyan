@@ -64,7 +64,12 @@
     
     KHYOrderListViewController *vc = [[KHYOrderListViewController alloc] init];
     vc.selectIndex = @(index).stringValue;
-    vc.mem_id = self.memberID;
+    if (self.memberID == nil) {
+        vc.patient_id = self.patient_id;
+    }else{
+        vc.mem_id = self.memberID;
+    }
+    
     return vc;
 }
 

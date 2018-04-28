@@ -21,7 +21,7 @@
         NSMutableArray *titleArr = [NSMutableArray array];
         [titleArr addObject:@[@"home_icon_task",@"新建任务",@"0"]];
         [titleArr addObject:@[@"home_icon_customer",@"新增客户",@"1"]];
-        if ([[HelperManager CreateInstance].position_id isEqualToString:@"20"])
+        if ([[HelperManager CreateInstance].type isEqualToString:@"2"])
         {
             [titleArr addObject:@[@"home_ExpertsQuestions",@"专家提问",@"2"]];
         }

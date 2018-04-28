@@ -65,9 +65,9 @@
 #define SUCCESS @"10000"
 
 // API 测试接口
-#define SERVICE_URL @"http://api.khy.renxixi.com/"
+//#define SERVICE_URL @"http://api.khy.renxixi.com/"
 // API正式接口
-//#define SERVICE_URL @"https://api.jskhy.com:4443"
+#define SERVICE_URL @"https://api.jskhy.com:4443"
 
 
 #endif /* kehuiyan_prefix_pch */

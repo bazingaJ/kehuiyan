@@ -92,22 +92,21 @@ static NSString *const cellIdentifier = @"KHYFilterMemberCell1";
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSDictionary *dic = self.dataArr[indexPath.row];
-    if ([[NSString getRightStringByCurrentString:dic[@"user_id"]] isEqualToString:[HelperManager CreateInstance].user_id]) {
-        return;
-    }
-    // 1.咨询列表 2.专家提问 3.患教活动 4.销售管理 5.患者管理
+    
+    // 1.咨询列表 2.专家提问  1和2统一传 “10”      3.患教活动 4.销售管理 5.患者管理 6.任务管理 7.客户管理
     NSInteger filter = [self.filterType integerValue];
     switch (filter) {
         case 10:
         {
-            if ([dic[@"position_id"] isEqualToString:@"4"]) {
+            
+            if ([dic[@"type"] isEqualToString:@"3"]) {
                 // 咨询记录
                 KHYQuestionListViewController *questionVC = [KHYQuestionListViewController new];
                 questionVC.memberID = [NSString getRightStringByCurrentString:dic[@"user_id"]];
                 questionVC.characterType = 2;
                 [self.navigationController pushViewController:questionVC animated:YES];
             }
-            else if([dic[@"position_id"] isEqualToString:@"20"]){
+            else if([dic[@"type"] isEqualToString:@"2"]){
                 //专家提问
                 KHYQuestionListViewController *questionVC = [KHYQuestionListViewController new];
                 questionVC.memberID = [NSString getRightStringByCurrentString:dic[@"user_id"]];
@@ -123,18 +122,37 @@ static NSString *const cellIdentifier = @"KHYFilterMemberCell1";
             break;
         case 3:
         {
-            //患教管理
-            KHYActivityViewController *vc = [[KHYActivityViewController alloc] init];
-            vc.member_id = [NSString getRightStringByCurrentString:dic[@"user_id"]];
-            vc.selectIndex = 0;
-            vc.title = @"患教管理";
-            vc.menuViewStyle = WMMenuViewStyleLine;
-            vc.automaticallyCalculatesItemWidths = YES;
-            vc.progressViewIsNaughty = YES;
-            vc.progressWidth = 70;
-            vc.titleSizeSelected = 18;
-            vc.titleColorSelected = MAIN_COLOR;
-            [self.navigationController pushViewController:vc animated:YES];
+            if ([dic[@"is_send_activity"] isEqualToString:@"1"]) {
+                //患教管理
+                KHYActivityViewController *vc = [[KHYActivityViewController alloc] init];
+                vc.isShowBtn = @"1";
+                vc.member_id = [NSString getRightStringByCurrentString:dic[@"user_id"]];
+                vc.selectIndex = 0;
+                vc.title = @"患教管理";
+                vc.menuViewStyle = WMMenuViewStyleLine;
+                vc.automaticallyCalculatesItemWidths = YES;
+                vc.progressViewIsNaughty = YES;
+                vc.progressWidth = 70;
+                vc.titleSizeSelected = 18;
+                vc.titleColorSelected = MAIN_COLOR;
+                [self.navigationController pushViewController:vc animated:YES];
+            }else {
+                //患教管理
+                KHYActivityViewController *vc = [[KHYActivityViewController alloc] init];
+                vc.isShowBtn = @"2";
+                vc.member_id = [NSString getRightStringByCurrentString:dic[@"user_id"]];
+                vc.selectIndex = 0;
+                vc.title = @"患教管理";
+                vc.menuViewStyle = WMMenuViewStyleLine;
+                vc.automaticallyCalculatesItemWidths = YES;
+                vc.progressViewIsNaughty = YES;
+                vc.progressWidth = 70;
+                vc.titleSizeSelected = 18;
+                vc.titleColorSelected = MAIN_COLOR;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            
+            
             
         }
             break;
